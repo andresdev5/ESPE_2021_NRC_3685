@@ -6,4 +6,6 @@ workshops/**/.vscode/*
 workshops/**/.vs
 workshops/**/*.layout
 workshops/**/*.vcxproj.*
-
+workshops/**/Makefile.win
+workshops/**/*.o
+workshops/**/*.exe
