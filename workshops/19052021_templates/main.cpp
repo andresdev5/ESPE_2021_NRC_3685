@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
     std::cout << multiplicand << " * " << multiplier << " = " << multiply_result << std::endl;
 
     float divisor = 10;
-    float dividend = 2;
+    float dividend = 3;
     float divide_result = MathUtils<float>::divide(divisor, dividend);
 
     std::cout << divisor << " / " << dividend << " = " << divide_result << std::endl;
