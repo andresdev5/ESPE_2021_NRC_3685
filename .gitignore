@@ -1,3 +1,9 @@
 workshops/**/build/*
+workshops/**/bin/*
+workshops/**/Debug/*
+workshops/**/obj/*
 workshops/**/.vscode/*
+workshops/**/.vs
 workshops/**/*.layout
+workshops/**/*.vcxproj.*
+
