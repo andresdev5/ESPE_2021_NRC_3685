@@ -38,6 +38,24 @@ void check_float() {
     if (result != 5.f) {
         throw std::runtime_error("check_float(): invalid add() result");
     }
+
+    result = MathUtils<float>::subtract(5.4, 1.3);
+
+    if (result != 4.1) {
+        throw std::runtime_error("check_float(): invalid subtract() result");
+    }
+
+    result = MathUtils<float>::multiply(1.5, 3);
+
+    if (result != 4.5) {
+        throw std::runtime_error("check_float(): invalid multiply() result");
+    }
+
+    result = MathUtils<float>::divide(9, 1.5);
+
+    if (result != 6) {
+        throw std::runtime_error("check_float(): invalid divide() result");
+    }
 }
 
 void check_double() {
