@@ -32,8 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="application.cpp" />
+		<Unit filename="application.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="math_utils.cpp" />
 		<Unit filename="math_utils.h" />
+		<Unit filename="numeric_pair.cpp" />
+		<Unit filename="numeric_pair.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

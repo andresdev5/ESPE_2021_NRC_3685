@@ -5,6 +5,7 @@ workshops/**/obj/*
 workshops/**/.vscode/*
 workshops/**/.vs
 workshops/**/*.layout
+workshops/**/*.depend
 workshops/**/*.vcxproj.*
 workshops/**/Makefile.win
 workshops/**/*.o
