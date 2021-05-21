@@ -46,7 +46,7 @@ NumericPair<T> MathUtils<T, U>::random_pair(T min, T max) {
     NumericPair<T> pair;
 
     std::random_device rd;
-    std::mt19937_64 mt(std::chrono::system_clock::now().time_since_epoch().count());
+    std::mt19937_64 mt(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 
     if (std::is_integral<T>::value) {
         std::uniform_int_distribution<> dist(min, max);

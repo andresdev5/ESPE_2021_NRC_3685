@@ -15,6 +15,8 @@
 #pragma once
 #include <type_traits>
 #include <string>
+#include <iostream>
+#include <sstream>
 
 template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
 class NumericPair {
