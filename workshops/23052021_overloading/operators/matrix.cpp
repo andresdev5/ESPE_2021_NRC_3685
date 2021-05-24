@@ -231,6 +231,25 @@ Matrix Matrix::operator +(Matrix &matrix) {
     return result;
 }
 
+Matrix Matrix::operator -(Matrix &matrix) {
+    if (size != matrix.get_size()) {
+        throw std::runtime_error("matrices must have the same size");
+    }
+
+    Matrix result(size);
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            int left = data.at(i).at(j);
+            int right = matrix[i][j];
+
+            result[i][j] = left - right;
+        }
+    }
+    
+    return result;
+}
+
 std::vector<int> Matrix::operator [](int index) const {
     return data[index];
 }

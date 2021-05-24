@@ -33,7 +33,7 @@ class Matrix {
          * @param matrix matriz a sumarse
          * @return Matrix matriz resultante
          */
-        Matrix operator -(const Matrix &matrix);
+        Matrix operator -(Matrix &matrix);
 
         /**
          * @brief sobrecarga del operador "[]" para el acceso 
