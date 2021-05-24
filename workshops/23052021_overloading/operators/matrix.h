@@ -13,6 +13,13 @@ class Matrix {
         void print();
 
         /**
+         * @brief solicita datos por consola de manera interactiva 
+         * para ingresarlos a la matriz
+         * 
+         */
+        void interactive_input();
+
+        /**
          * @brief sobrecarga del operador "+" para la suma de 2 matrices
          * 
          * @param matrix matriz a sumarse
