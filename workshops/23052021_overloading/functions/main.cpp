@@ -75,25 +75,25 @@ int main(int, char**) {
                 double doble_2;
                 double doble_3;
 
-                std::cout << "ingresa un entero: ";
+                std::cout << "ingresa un numero entero: ";
                 std::cin >> entero_1;
 
-                std::cout << "ingresa otro entero: ";
+                std::cout << "ingresa otro numero entero: ";
                 std::cin >> entero_2;
             
-                std::cout << "ingresa un decimal: ";
+                std::cout << "ingresa un numero decimal: ";
                 std::cin >> flotante_1;
 
-                std::cout << "ingresa otro decimal: ";
+                std::cout << "ingresa otro numero decimal: ";
                 std::cin >> flotante_2;
                 
-            	std::cout << "ingresa un doble: ";
+            	std::cout << "ingresa un numero doble: ";
                 std::cin >> doble_1;
             
-            	std::cout << "ingresa otro doble: ";
+            	std::cout << "ingresa otro numero doble: ";
                 std::cin >> doble_2;
                 
-                std::cout << "ingresa otro doble: ";
+                std::cout << "ingresa otro numero doble: ";
                 std::cin >> doble_3;
 
                 int resultado_1 = Operation::resta(entero_1, entero_2);
