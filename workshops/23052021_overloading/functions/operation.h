@@ -31,6 +31,34 @@ class Operation {
         static float suma(float a, float b);
 
         /**
+         * @brief resta de 2 enteros
+         * 
+         * @param a 
+         * @param b 
+         * @return int 
+         */
+        static int resta (int a, int b);
+
+        /**
+         * @brief resta de 2 flotantes
+         * 
+         * @param a 
+         * @param b 
+         * @param c 
+         * @return float 
+         */
+        static float resta (float a, float b);
+
+        /**
+         * @brief resta de 3 dobles
+         * 
+         * @param a 
+         * @param b 
+         * @return double 
+         */
+        static double resta (double a, double b, double c);
+
+        /**
          * @brief multiplicacion de 2 enteros
          * 
          * @param a 

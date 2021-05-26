@@ -12,6 +12,19 @@ float Operation::suma(float a, float b) {
     return a + b;
 }
 
+int Operation:: resta (int a, int b) {
+    return a - b;
+}
+
+float Operation :: resta (float a, float b) {
+    return a - b;
+}
+
+double Operation :: resta (double a, double b, double c){
+    return a - b - c;
+}
+
+
 int Operation::multiplicacion(int a, int b) {
     return a * b;
 }
