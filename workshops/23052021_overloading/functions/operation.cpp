@@ -24,7 +24,6 @@ double Operation :: resta (double a, double b, double c){
     return a - b - c;
 }
 
-
 int Operation::multiplicacion(int a, int b) {
     return a * b;
 }
