@@ -70,7 +70,53 @@ int main(int, char**) {
             }
             break;
             case 3: {
-                // multiplicacion
+                int entero_1;
+                int entero_2;
+                float flotante_1;
+                float flotante_2;
+                float flotante_3;
+                double doble_1;
+                double doble_2;
+                double doble_3;
+
+                std::cout << "ingresa un entero: ";
+                std::cin >> entero_1;
+
+                std::cout << "ingresa otro entero: ";
+                std::cin >> entero_2;
+
+                std::cout << "(float) ingresa un decimal: ";
+                std::cin >> flotante_1;
+
+                std::cout << "(float) ingresa otro decimal: ";
+                std::cin >> flotante_2;
+
+                std::cout << "(float) ingresa otro decimal: ";
+                std::cin >> flotante_3;
+
+                std::cout << "(double) ingrese un decimal: ";
+                std::cin >> doble_1;
+
+                std::cout << "(double) ingrese un decimal: ";
+                std::cin >> doble_2;
+
+                std::cout << "(double) ingrese un decimal: ";
+                std::cin >> doble_3;
+
+                int resultado_1 = Operation::multiplicacion(entero_1, entero_2);
+                float resultado_2 = Operation::multiplicacion(flotante_1, flotante_2, flotante_3);
+                double resultado_3 = Operation::multiplicacion(doble_1, doble_2, doble_3);
+
+                std::cout << std::endl;
+
+                std::cout << "Operation::multiplicacion(" << entero_1 << ", " << entero_2 << ") = " 
+                    << resultado_1 << std::endl;
+                    
+                std::cout << "Operation::multiplicacion(" << flotante_1 << ", " << flotante_2 << ", " << flotante_3 << ") = " 
+                    << resultado_2 << std::endl;
+                
+                std::cout << "Operation::multiplicacion(" << doble_1 << ", " << doble_2 << ", " << doble_3 << ") = " 
+                    << resultado_3 << std::endl;
             }
             break;
             case 4: {
