@@ -6,6 +6,7 @@
 #include "user.h"
 #include "person.h"
 #include "circulo.h"
+#include "vector.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -23,18 +24,19 @@ void Application::run() {
         std::cout << "2: usuarios (==, !=, <, >)" << std::endl;
         std::cout << "3: clase persona (&, &&, &=)" << std::endl;
         std::cout << "4: clase circulo (*, /, +=)" << std::endl;
-        std::cout << "5: salir" << std::endl;
+        std::cout << "5: clase vector (*=, %=, ())" << std::endl;
+        std::cout << "6: salir" << std::endl;
         std::cout << std::endl;
 
         do {
             std::cout << "ingresa una opcion: ";
             std::cin >> opcion;
 
-            if (opcion < 1 || opcion > 5) {
+            if (opcion < 1 || opcion > 6) {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-        } while (opcion < 1 || opcion > 5);
+        } while (opcion < 1 || opcion > 6);
 
         switch (opcion) {
             case 1: {
@@ -207,11 +209,56 @@ void Application::run() {
                 area = circulo3.getArea();
                 cout << "Area  del circulo 3 Operador (Asignacion suma) : " << area <<endl;
             }
+            case 5: {
+                double vector1_x1, vector1_x2, vector1_x3;
+                double vector2_x1, vector2_x2, vector2_x3;
+
+                std::cout << "ingresa el valor de x1 (vector 1): ";
+                std::cin >> vector1_x1;
+
+                std::cout << "ingresa el valor de x2 (vector 1): ";
+                std::cin >> vector1_x2;
+
+                std::cout << "ingresa el valor de x3 (vector 1): ";
+                std::cin >> vector1_x3;
+
+                std::cout << "ingresa el valor de x1 (vector 2): ";
+                std::cin >> vector2_x1;
+
+                std::cout << "ingresa el valor de x2 (vector 2): ";
+                std::cin >> vector2_x2;
+
+                std::cout << "ingresa el valor de x3 (vector 2): ";
+                std::cin >> vector2_x3;
+
+                Vector vector1(vector1_x1, vector1_x2, vector1_x3);
+                Vector vector2(vector2_x1, vector2_x2, vector2_x3);
+
+                double producto_punto = (vector1 %= vector2);
+                Vector producto_cruz = (vector1 *= vector2);
+
+                std::cout << "producto punto: " << producto_punto << std::endl;
+                std::cout << "producto cruz: (" 
+                    << producto_cruz.getX1() << ", " << producto_cruz.getX2()
+                    << "," << producto_cruz.getX3() << ")" << std::endl;
+
+                if (!vector1()) {
+                    std::cout << "el vector 1 esta vacio" << std::endl;
+                } else {
+                    std::cout << "el vector 1 no esta vacio" << std::endl;
+                }
+
+                if (!vector2()) {
+                    std::cout << "el vector 2 esta vacio" << std::endl;
+                } else {
+                    std::cout << "el vector 2 no esta vacio" << std::endl;
+                }
+            }
         }
 
-        if (opcion != 5) {
+        if (opcion != 6) {
             std::cout << std::endl << std::endl;
             system("pause");
         }
-    } while (opcion != 5);
+    } while (opcion != 6);
 }
