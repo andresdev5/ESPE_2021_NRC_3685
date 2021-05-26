@@ -11,3 +11,15 @@ int Operation::suma(int a, int b, int c) {
 float Operation::suma(float a, float b) {
     return a + b;
 }
+
+float Operation::promedio(float a, float b){
+    return (a + b)/2;
+}
+
+double Operation::promedio(double a, double b, double c){
+    return (a + b + c) / 3;
+}
+
+float Operation::promedio(float a, float b, float c , float d){
+    return (a + b + c + d) / 4;
+}

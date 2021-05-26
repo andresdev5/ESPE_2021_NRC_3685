@@ -29,4 +29,35 @@ class Operation {
          * @return float 
          */
         static float suma(float a, float b);
+
+        /**
+         * @brief promedio de 2 enteros
+         * 
+         * @param a 
+         * @param b 
+         * @return float valor con decimal
+         */
+        static float promedio(float a, float b);
+
+        /**
+         * @brief promero de 3 decimal
+         * 
+         * @param a 
+         * @param b 
+         * @param c 
+         * @return double valor con decimal
+         */
+        static double promedio(double a, double b, double c);
+    
+        /**
+         * @brief promedio de 4 flotantes
+         * 
+         * @param a 
+         * @param b 
+         * @param c 
+         * @param d 
+         * @return float valor con decimal
+         */
+        static float promedio(float a, float b, float c , float d);
+    
 };

@@ -78,7 +78,49 @@ int main(int, char**) {
             }
             break;
             case 5: {
-                // promedio
+                double decimal_1;
+                double decimal_2;
+                double decimal_3;
+                float flotante_1;
+                float flotante_2;
+                float flotante_3;
+                float flotante_4;
+
+                std::cout << "ingresa el primer numero decimal: ";
+                std::cin >> decimal_1;
+
+                std::cout << "ingresa el segundo numero decimal: ";
+                std::cin >> decimal_2;
+
+                std::cout << "ingresa el tercer  numero decimal: ";
+                std::cin >> decimal_3;
+
+                std::cout << "ingresa el primer numero flotante: ";
+                std::cin >> flotante_1;
+
+                std::cout << "ingresa el segundo numero flotante: ";
+                std::cin >> flotante_2;
+
+                std::cout << "ingresa el tercer numero flotante: ";
+                std::cin >> flotante_3;
+
+                std::cout << "ingresa el cuarto numero flotante: ";
+                std::cin >> flotante_4;
+
+                float resultado_1 = Operation::promedio(flotante_1, flotante_2);
+                double resultado_2 = Operation::promedio(decimal_1, decimal_2, decimal_3);
+                float resultado_3 = Operation::promedio(flotante_1, flotante_2, flotante_3, flotante_4);
+
+                std::cout << std::endl;
+
+                std::cout << "Operation::promedio(" << flotante_1 << ", " << flotante_2 << ") = " 
+                    << resultado_1 << std::endl;
+                    
+                std::cout << "Operation::promedio(" << decimal_1 << ", " << decimal_2 << ", " << decimal_3 << ") = " 
+                    << resultado_2 << std::endl;
+                
+                std::cout << "Operation::promedio(" << flotante_1 << ", " << flotante_2 << ", " << flotante_3 << ", " << flotante_4 << ") = " 
+                    << resultado_3 << std::endl;
             }
             break;
         }
