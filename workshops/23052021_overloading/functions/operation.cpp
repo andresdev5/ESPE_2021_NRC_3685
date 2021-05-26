@@ -12,6 +12,18 @@ float Operation::suma(float a, float b) {
     return a + b;
 }
 
+int Operation::multiplicacion(int a, int b) {
+    return a * b;
+}
+
+float Operation::multiplicacion(float a, float b, float c) {
+    return a * b * c;
+}
+
+double Operation::multiplicacion(double a, double b, double c) {
+    return a * (b * c);
+}
+
 float Operation::promedio(float a, float b){
     return (a + b)/2;
 }
