@@ -66,6 +66,7 @@ int main(int, char**) {
             }
             break;
             case 2: {
+                //resta
                 int entero_1;
                 int entero_2;
                 float flotante_1;
