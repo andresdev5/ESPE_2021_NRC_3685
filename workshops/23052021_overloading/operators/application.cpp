@@ -5,6 +5,7 @@
 #include "matrix.h"
 #include "user.h"
 #include "person.h"
+#include "circulo.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -21,18 +22,19 @@ void Application::run() {
         std::cout << "1: matrices (+, -, ~)" << std::endl;
         std::cout << "2: usuarios (==, !=, <, >)" << std::endl;
         std::cout << "3: clase persona (&, &&, &=)" << std::endl;
-        std::cout << "4: salir" << std::endl;
+        std::cout << "4: clase circulo (*, /, +=)" << std::endl;
+        std::cout << "5: salir" << std::endl;
         std::cout << std::endl;
 
         do {
             std::cout << "ingresa una opcion: ";
             std::cin >> opcion;
 
-            if (opcion < 1 || opcion > 4) {
+            if (opcion < 1 || opcion > 5) {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-        } while (opcion < 1 || opcion > 4);
+        } while (opcion < 1 || opcion > 5);
 
         switch (opcion) {
             case 1: {
@@ -159,11 +161,57 @@ void Application::run() {
                 std::cout << "(persona 2) Apellidos: " << person_2.operator&=(person_2) << std::endl;
             }
             break;
+            case 4: {
+                double diametro,radio;
+                Circulo circulo1;                
+                Circulo circulo2;  
+                Circulo circulo3;                             
+                double area = 0.0;    
+                
+                cout << "Ingrese el diametro 1: " << endl;
+                cin >> diametro;
+                cout << "Ingrese el radio 1: " << endl;
+                cin >> radio;
+                
+                circulo1.setDiametro(diametro);  
+                circulo1.setRadio(radio); 
+
+                cout << "Ingrese el diametro 2: " << endl;
+                cin >> diametro;
+                cout << "Ingrese el radio 2: " << endl;
+                cin >> radio;
+                
+                circulo2.setDiametro(diametro);  
+                circulo2.setRadio(radio); 
+                
+                
+                area = circulo1.getArea();
+                cout << "El area del circulo 1 es : " << area <<endl;
+            
+                area = circulo2.getArea();
+                cout << "El area del circulo 2 es : " << area <<endl;
+                
+
+                circulo3 = circulo1 * circulo2;
+
+
+                area = circulo3.getArea();
+                
+                cout << "Area del circulo 3 Operador multiplicacion : " << area <<endl;
+                
+                circulo3 = circulo1 / circulo2;
+                area = circulo3.getArea();
+                cout << "Area del circulo 3 Operador Division : " << area <<endl;
+                
+                circulo3 += circulo2;
+                area = circulo3.getArea();
+                cout << "Area  del circulo 3 Operador (Asignacion suma) : " << area <<endl;
+            }
         }
 
-        if (opcion != 4) {
+        if (opcion != 5) {
             std::cout << std::endl << std::endl;
             system("pause");
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
 }

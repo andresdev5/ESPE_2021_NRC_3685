@@ -17,6 +17,8 @@ set(PROJECT_FILES
     user.cpp
     person.h
     person.cpp
+    circulo.h
+    circulo.cpp
 )
 
 add_executable(overloading ${PROJECT_FILES})
