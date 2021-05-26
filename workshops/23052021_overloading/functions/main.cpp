@@ -163,7 +163,31 @@ int main(int, char**) {
             }
             break;
             case 4: {
-                // division
+                int entero_1, entero_2;
+                double flotante_1, flotante_2, flotante_3;
+
+                std::cout << "ingresa un entero: ";
+                std::cin >> entero_1;
+
+                std::cout << "ingresa otro entero: ";
+                std::cin >> entero_2;
+
+                std::cout << "(float) ingresa un decimal: ";
+                std::cin >> flotante_1;
+
+                std::cout << "(float) ingresa otro decimal: ";
+                std::cin >> flotante_2;
+
+                std::cout << "(float) ingresa otro decimal: ";
+                std::cin >> flotante_3;
+
+                int resultado_1 = Operation::division(entero_1, entero_2);
+                double resultado_2 = Operation::division(flotante_1, flotante_2);
+                double resultado_3 = Operation::division(flotante_1, flotante_2, flotante_3);
+
+                std::cout << entero_1 << " / " << entero_2 << " = " << resultado_1 << std::endl;
+                std::cout << flotante_1 << " / " << flotante_2 << " = " << resultado_2 << std::endl;
+                std::cout << flotante_1 << " / " << flotante_2 << " / " << flotante_3 << " = " << resultado_3 << std::endl;
             }
             break;
             case 5: {

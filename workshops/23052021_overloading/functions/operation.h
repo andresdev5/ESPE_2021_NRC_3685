@@ -88,6 +88,34 @@ class Operation {
         static double multiplicacion(double a, double b, double c);
 
         /**
+         * @brief division entre 2 enteros
+         * 
+         * @param a 
+         * @param b 
+         * @return int 
+         */
+        static int division (int a, int b);
+
+        /**
+         * @brief division entre 2 double
+         * 
+         * @param a 
+         * @param b 
+         * @return double 
+         */
+        static double division (double a, double b);
+
+        /**
+         * @brief division entre 3 double
+         * 
+         * @param a 
+         * @param b 
+         * @param c 
+         * @return double 
+         */
+        static double division (double a, double b, double c);
+
+        /**
          * @brief promedio de 2 enteros
          * 
          * @param a 
