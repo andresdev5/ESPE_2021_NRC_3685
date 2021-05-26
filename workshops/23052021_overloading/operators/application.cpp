@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "matrix.h"
 #include "user.h"
+#include "person.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -19,18 +20,19 @@ void Application::run() {
         std::cout << "Sobrecarga de operadores ejemplos" << std::endl << std::endl;
         std::cout << "1: matrices (+, -, ~)" << std::endl;
         std::cout << "2: usuarios (==, !=, <, >)" << std::endl;
-        std::cout << "3: salir" << std::endl;
+        std::cout << "3: clase persona (&, &&, &=)" << std::endl;
+        std::cout << "4: salir" << std::endl;
         std::cout << std::endl;
 
         do {
             std::cout << "ingresa una opcion: ";
             std::cin >> opcion;
 
-            if (opcion < 1 || opcion > 3) {
+            if (opcion < 1 || opcion > 4) {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-        } while (opcion < 1 || opcion > 3);
+        } while (opcion < 1 || opcion > 4);
 
         switch (opcion) {
             case 1: {
@@ -112,12 +114,56 @@ void Application::run() {
                 }
             }
             break;
+            case 3: {
+                std::string name;
+                std::string last_name_1;
+                std::string last_name_2;
+
+                Person person_1;
+                Person person_2;
+
+                std::cout << "(persona 1) ingrese su nombre: ";
+                std::cin >> name;
+
+                std::cout << "(persona 1) ingrese su primer apellido: ";
+                std::cin >> last_name_1;
+
+                std::cout << "(persona 1) ingrese su segundo apellido: ";
+                std::cin >> last_name_2;
+
+                person_1.set_name(name);
+                person_1.set_last_name_1(last_name_1);
+                person_1.set_last_name_2(last_name_2);
+
+                std::cout << "(persona 2) ingrese su nombre: ";
+                std::cin >> name;
+
+                std::cout << "(persona 2) ingrese su primer apellido: ";
+                std::cin >> last_name_1;
+
+                std::cout << "(persona 2) ingrese su segundo apellido: ";
+                std::cin >> last_name_2;
+
+                person_2.set_name(name);
+                person_2.set_last_name_1(last_name_1);
+                person_2.set_last_name_2(last_name_2);
+
+                std::cout << "////////////////////////// Datos ///////////////////////" << std::endl;
+
+                std::cout << "(persona 1) El Primer apellido es: " << person_1.operator&(person_1) << std::endl;
+                std::cout << "(persona 1) El segundo apellido es: " << person_1.operator&&(person_1) << std::endl;
+                std::cout << "(persona 1) Apellidos: " << person_1.operator&=(person_1) << std::endl;
+
+                std::cout << "(persona 2) El Primer apellido es: " << person_2.operator&(person_2) << std::endl;
+                std::cout << "(persona 2) El segundo apellido es: " << person_2.operator&&(person_2) << std::endl;
+                std::cout << "(persona 2) Apellidos: " << person_2.operator&=(person_2) << std::endl;
+            }
+            break;
         }
 
-
-        if (opcion != 3) {
+        if (opcion != 4) {
             std::cout << std::endl << std::endl;
             system("pause");
         }
-    } while (opcion != 3);
+    } while (opcion != 4);
 }
