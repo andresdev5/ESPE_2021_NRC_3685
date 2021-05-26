@@ -31,7 +31,7 @@ class Operation {
         static float suma(float a, float b);
 
         /**
-         * @brief resta de 2 enteros
+         * @brief multiplicacion de 2 enteros
          * 
          * @param a 
          * @param b 
@@ -40,7 +40,7 @@ class Operation {
         static int multiplicacion(int a, int b);
 
         /**
-         * @brief resta de 3 flotantes
+         * @brief multiplicacion de 3 flotantes
          * 
          * @param a 
          * @param b 
@@ -50,7 +50,7 @@ class Operation {
         static float multiplicacion(float a, float b, float c);
 
         /**
-         * @brief suma de 2 doubles
+         * @brief multiplicacion de 3 doubles
          * 
          * @param a 
          * @param b 
