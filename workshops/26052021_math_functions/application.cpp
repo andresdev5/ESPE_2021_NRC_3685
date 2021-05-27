@@ -44,15 +44,15 @@ void Application::run() {
             }
             break;
             case 2: {
-                
+                //funcion coseno
             }
             break;
             case 3: {
-
+                //funcion tangente
             }
             break;
             case 4: {
-
+                //funcion cotangente
             }
             case 5: {
                 
