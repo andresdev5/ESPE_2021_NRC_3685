@@ -4,7 +4,7 @@ project(math_functions VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(math_functions main.cpp)
+add_executable(math_functions main.cpp Taylor.cpp Taylor application.cpp application.h)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

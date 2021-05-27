@@ -8,7 +8,7 @@ class Person{
         Person(std::string name, std::string last_name_1, std::string last_name_2);
 
         /**
-         * @brief operador para añadir primer apellido
+         * @brief operador para mostrar primer apellido
          * 
          * @param person
          * @return el primer apellido
@@ -16,7 +16,7 @@ class Person{
         std::string operator &(Person &person);
 
         /**
-         * @brief operador para añadir segundo apellido
+         * @brief operador para mostrar segundo apellido
          * 
          * @param person
          * @return el segundo apellido
@@ -24,7 +24,7 @@ class Person{
         std::string operator &&(Person &person);
 
         /**
-         * @brief operador para unir los 2 apellidos
+         * @brief operador para mostrar los 2 apellidos
          * 
          * @param person
          * @return primer apellido y segundo apellido
