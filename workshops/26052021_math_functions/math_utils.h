@@ -53,14 +53,13 @@ class MathUtils {
          */
         static double ctg(double angle);
         /**
-         * @brief Calcula el seno de un angulo
+         * @brief Calcula el cosecante de un angulo
          * 
          * @param angle angulo
-         * @param precision total de terminos a iterarse en la serie de Taylor
+         * @param presicion total de terminos a iterarse en la serie de Taylor
          * @return double seno calculado
          */
-        static double csc(double angle, int precision = 16);
-
+        static double csc(double angulo, int presicion = 16);
 
         /**
          * @brief Calcula el factorial de un numero
