@@ -30,6 +30,12 @@ double MathUtils::cos(double angle, int precision) {
 }
 
 double MathUtils::tan(double angle, int precision) {
+    if (angle == 270 || angle == 90) {
+        throw std::invalid_argument("valor indeterminado al calcular la tangente");
+    } else if (angle == 0 || angle == 180 || angle == 360) {
+        return 0;
+    }
+
     double radians = MathUtils::to_radians(angle);
     
     double radians_sen = radians;
@@ -58,7 +64,13 @@ double MathUtils::tan(double angle, int precision) {
 }
 
 double MathUtils::ctg(double angle) {
-    
+    if (angle == 0 || angle == 180 || angle == 360) {
+        throw std::invalid_argument("valor indeterminado al calcular la tangente");
+    } else if (angle == 90 || angle == 270) {
+        return 0;
+    }
+
+    return MathUtils::cos(angle) / MathUtils::sin(angle);
 }
 
 double MathUtils::pow(double base, int exponent) {
@@ -85,6 +97,10 @@ double MathUtils::sqrt(float number) {
     long i;
     float x2, y;
     const float threehalfs = 1.5F;
+
+    if (number < 0) {
+        throw std::invalid_argument("el numero no esta en los reales");
+    }
 
     x2 = number * 0.5F;
     y  = number;
