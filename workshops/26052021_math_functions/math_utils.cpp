@@ -8,7 +8,7 @@ double MathUtils::sin(double angle, int precision) {
 
     for (int i = 0; i < precision; i++) {
         long long factorial = MathUtils::factorial(2 * i + 1);
-        suma += (MathUtils::pow(-1, i) * pow(radians, 2 * i +1)) / factorial;
+        suma += (MathUtils::pow(-1, i) * MathUtils::pow(radians, 2 * i +1)) / factorial;
     }
     
     return suma;
@@ -48,7 +48,7 @@ double MathUtils::tan(double angle, int precision) {
 
     for (int i = 0; i < precision; i++) {
         long long factorial = MathUtils::factorial(2 * i + 1);
-        numerator += (MathUtils::pow(-1, i) * pow(radians_sen, 2 * i +1)) / factorial;
+        numerator += (MathUtils::pow(-1, i) * MathUtils::pow(radians_sen, 2 * i +1)) / factorial;
     }
 
     for (int i = 0; i < precision; i++) {
