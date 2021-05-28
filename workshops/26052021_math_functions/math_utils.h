@@ -1,3 +1,17 @@
+/**      
+ * UNIVERSIDAD DE LAS FUERZAS ARMADAS ESPE
+ * Departamento de ciencias de la computacion
+ * Estructura de datos
+ * Docente: Ing. Fernando Solis
+ * Tema: Funciones Matematicas
+ * 
+ * @date 19/05/2021
+ * @author Andres Jacome
+ * @author Gabriel Aguirre
+ * @author Dalton Arevalo
+ * @author Diego Jimenez
+ * @author Lizzette Zapata
+ */
 #pragma once
 
 class MathUtils {
