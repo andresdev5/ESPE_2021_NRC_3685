@@ -57,21 +57,24 @@ void Application::run() {
             }
             break;
             case 3: {
-                //funcion tangente
+                
             }
             break;
             case 4: {
-                //funcion cotangente
+                
             }
             case 5: {
+                double valor;
                 
+                std::cout << "ingrese un valor: ";
+                std::cin >> valor;
+                std::cout << "raiz cuadrada de " << valor << " = " << MathUtils::sqrt(valor) << std::endl;
             }
             case 6: {
                 int terms;
 
-                std::cout << "ingrese el total de terminos (sugerencia > 1000): ";
+                std::cout << "ingrese el total de terminos (valor > 1000 sugerido): ";
                 std::cin >> terms;
-
                 std::cout << "PI = " << MathUtils::pi(terms) << std::endl;
             }
         }

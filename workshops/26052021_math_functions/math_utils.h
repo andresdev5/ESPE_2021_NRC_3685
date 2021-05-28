@@ -73,6 +73,14 @@ class MathUtils {
         static double to_radians(double angle);
 
         /**
+         * @brief calcula la raiz cuadrada de un numero dado
+         * 
+         * @param number numero a calcular la raiz
+         * @return double raiz calculada
+         */
+        static double sqrt(float number);
+
+        /**
          * @brief compara dos valores y regresa el mayor valor
          * 
          * @param a valor uno

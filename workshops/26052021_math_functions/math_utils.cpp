@@ -1,5 +1,6 @@
 #include "math_utils.h"
 #include <iostream>
+#include <stdexcept>
 
 double MathUtils::sin(double angle, int precision) {
     double radians = MathUtils::to_radians(angle);
@@ -54,6 +55,24 @@ double MathUtils::pow(double base, int exponent) {
             return (temp * temp) / base;
         }
     }
+}
+
+double MathUtils::sqrt(float number) {
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = number * 0.5F;
+    y  = number;
+    i  = * ( long * ) &y;
+    i  = 0x5f3759df - ( i >> 1 ); // Aproximacion de Newton
+    y  = * ( float * ) &i;
+
+    for (int j = 0; j < 3; j++) {
+        y  = y * ( threehalfs - ( x2 * y * y ) );
+    }
+
+    return 1 / y;
 }
 
 double MathUtils::pi(int terms) {
