@@ -20,20 +20,21 @@ void Application::run() {
         std::cout << "2: Coseno" << std::endl;
         std::cout << "3: Tangente" << std::endl;
         std::cout << "4: Cotangente" << std::endl;
-        std::cout << "5: raiz" << std::endl;
-        std::cout << "6: calcular pi" << std::endl;
-        std::cout << "7: salir" << std::endl;
+        std::cout << "5: Cosecante" << std::endl;
+        std::cout << "6: raiz" << std::endl;
+        std::cout << "7: calcular pi" << std::endl;
+        std::cout << "8: salir" << std::endl;
         std::cout << std::endl;
 
         do {
             std::cout << "ingresa una opcion: ";
             std::cin >> opcion;
 
-            if (opcion < 1 || opcion > 7) {
+            if (opcion < 1 || opcion > 8) {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-        } while (opcion < 1 || opcion > 7);
+        } while (opcion < 1 || opcion >8);
 
         switch (opcion) {
             case 1: {
@@ -84,7 +85,18 @@ void Application::run() {
                 }
             }
             break;
+
             case 5: {
+                double angulo;
+
+                std::cout << "ingrese un angulo en grados: ";
+                std::cin >> angulo;
+
+                double resultado = MathUtils::csc(angulo);
+                std::cout << "csc(" << angulo << ") = " << resultado << std::endl;
+            }
+            break;
+            case 6: {
                 double valor;
                 
                 std::cout << "ingrese un valor: ";
@@ -97,7 +109,7 @@ void Application::run() {
                 }
             }
             break;
-            case 6: {
+            case 7: {
                 int terms;
 
                 std::cout << "ingrese el total de terminos (valor > 1000 sugerido): ";
@@ -107,9 +119,9 @@ void Application::run() {
             break;
         }
 
-        if (opcion != 7) {
+        if (opcion != 8) {
             std::cout << std::endl << std::endl;
             system("pause");
         }
-    } while (opcion != 7);
+    } while (opcion != 8);
 }

@@ -93,6 +93,19 @@ double MathUtils::pow(double base, int exponent) {
     }
 }
 
+double MathUtils::csc (double angulo, int presicion) {
+    double radians = MathUtils::to_radians(angulo);
+    double suma = 0;
+    double cos = 0;
+
+    for (int i = 0; i < presicion; i++) {
+        long long factorial = MathUtils::factorial(2 * i + 1);
+        suma += (MathUtils::pow(-1, i) * MathUtils::pow(radians, 2 * i +1)) / factorial;
+       cos = 1/suma; 
+    }
+    
+    return cos;
+}
 double MathUtils::sqrt(float number) {
     long i;
     float x2, y;
