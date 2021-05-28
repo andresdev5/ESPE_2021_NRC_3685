@@ -29,8 +29,32 @@ double MathUtils::cos(double angle, int precision) {
     return output;
 }
 
-double MathUtils::tan(double angle) {
+double MathUtils::tan(double angle, int precision) {
+    double radians = MathUtils::to_radians(angle);
     
+    double radians_sen = radians;
+    double radians_cos = radians;
+
+    double numerator = 0;
+    double denominator = 0;
+
+    double output;
+
+    for (int i = 0; i < precision; i++) {
+        long long factorial = MathUtils::factorial(2 * i + 1);
+        numerator += (MathUtils::pow(-1, i) * pow(radians_sen, 2 * i +1)) / factorial;
+    }
+
+    for (int i = 0; i < precision; i++) {
+        double numerator_for_cos = MathUtils::pow(-1, i) * MathUtils::pow(radians_cos, 2 * i);
+        double denominator_for_cos = MathUtils::factorial(2 * i);
+        double result = (numerator_for_cos / denominator_for_cos);
+        denominator += result;
+    }
+    
+    output = numerator / denominator;
+
+    return output;
 }
 
 double MathUtils::ctg(double angle) {
