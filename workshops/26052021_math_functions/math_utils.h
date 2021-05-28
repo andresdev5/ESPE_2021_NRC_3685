@@ -28,7 +28,7 @@ class MathUtils {
          * @param precision total de terminos a iterarse en la serie de Taylor
          * @return double tangente calculado
          */
-        static double tan(double angle);
+        static double tan(double angle, int precision = 16);
 
         /**
          * @brief Calcula la cotangente de un angulo

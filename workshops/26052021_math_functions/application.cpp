@@ -57,7 +57,13 @@ void Application::run() {
             }
             break;
             case 3: {
-                //funcion tangente
+                double angle;
+
+                std::cout << "ingrese un angulo en grados: ";
+                std::cin >> angle;
+
+                double result = MathUtils::tan(angle);
+                std::cout << "tan(" << angle << ") = " << result << std::endl;
             }
             break;
             case 4: {
