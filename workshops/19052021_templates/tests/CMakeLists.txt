@@ -1,2 +1,0 @@
-ADD_EXECUTABLE(test_math_utils test_math_utils.cpp)
-ADD_TEST(math_template test_math_utils)
