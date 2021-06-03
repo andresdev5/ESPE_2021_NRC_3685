@@ -9,6 +9,7 @@ enable_testing()
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
 set(PROJECT_FILES
+    "include/utils.h"
     "include/matrix.h"
     "include/matrix_utils.h"
 )

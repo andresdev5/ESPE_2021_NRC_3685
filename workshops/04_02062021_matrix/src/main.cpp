@@ -5,6 +5,7 @@
 
 int main(int argc, char **argv) {
     int size;
+    int exponent;
 
     do {
         std::cout << "ingrese la dimension de la matriz: ";
@@ -17,8 +18,10 @@ int main(int argc, char **argv) {
         }
     } while (size < 2);
 
-    Matrix<int> matrixA(size);
-    Matrix<int> matrixB(size);
+    Matrix<long long> matrixA(size);
+    Matrix<long long> matrixB(size);
+    Matrix<long long> matrixC(size);
+    Matrix<long long> matrixD(size);
 
     MatrixUtils::fill_random(matrixA, 0, 9);
     MatrixUtils::fill_random(matrixB, 0, 9);
@@ -28,6 +31,28 @@ int main(int argc, char **argv) {
 
     std::cout << std::endl << "Matriz B:" << std::endl;
     MatrixUtils::print_matrix(matrixB);
+
+    matrixC = MatrixUtils::multiply(matrixA, matrixB);
+
+    std::cout << std::endl << "(A * B) :" << std::endl;
+    MatrixUtils::print_matrix(matrixC);
+
+    do {
+        std::cout << "ingrese un valor: ";
+        std::cin >> exponent;
+
+        if (size < 0 || std::cin.fail()) {
+            std::cout << std::endl << "[el valor debe ser un valor numerico positivo valido]" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            size = -1;
+        }
+    } while (size < 0);
+
+    matrixD = MatrixUtils::pow(matrixC, exponent);
+
+    std::cout << std::endl << "(A * B) ^ " << exponent << " :" << std::endl;
+    MatrixUtils::print_matrix(matrixD);
 
     return 0;
 }

@@ -46,7 +46,11 @@ public:
      */
     int get_size();
 
-    ~Matrix();
+    /**
+     * @brief limpia la memoria alojada
+     *
+     */
+    void free();
 
 private:
     /**
@@ -62,6 +66,8 @@ private:
     int size;
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 template <typename T>
 Matrix<T>::Matrix(int size) : size(size) {
     if (size < 2) {
@@ -69,10 +75,10 @@ Matrix<T>::Matrix(int size) : size(size) {
     }
 
     // allocate memory
-    data = (int **)calloc(size, sizeof(int *));
+    data = (T **)calloc(size, sizeof(T *));
 
     for (int i = 0; i < size; i++) {
-        data[i] = (int *)calloc(size, sizeof(int));
+        data[i] = (T *)calloc(size, sizeof(T));
     }
 }
 
@@ -106,8 +112,9 @@ int Matrix<T>::get_size() {
 }
 
 template <typename T>
-Matrix<T>::~Matrix() {
+void Matrix<T>::free() {
     for (int i = 0; i < size; i++) {
+        std::cout << i << std::endl;
         free(data[i]);
     }
 
