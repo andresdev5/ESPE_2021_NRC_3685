@@ -8,5 +8,8 @@ int main(int argc, char **argv) {
     Matrix<int> matrixA(size);
     Matrix<int> matrixB(size);
 
+    MatrixUtils::fill_random(matrixA, 0, 9);
+    MatrixUtils::fill_random(matrixB, 0, 9);
+
     return 0;
 }
