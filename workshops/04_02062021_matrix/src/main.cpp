@@ -3,12 +3,10 @@
 #include "matrix_utils.h"
 
 int main(int argc, char **argv) {
-    int size = 2;
+    int size = 10;
 
-    Matrix<int> matrixA(2);
-    Matrix<int> matrixB(2);
-
-    // ...
+    Matrix<int> matrixA(size);
+    Matrix<int> matrixB(size);
 
     return 0;
 }
