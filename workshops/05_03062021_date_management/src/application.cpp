@@ -15,7 +15,7 @@ void Application::run() {
         date = Date::read("Ingrese una fecha (dd/mm/yyyy): ");
         Day day = date.get_weekday();
 
-        if (day == Day::Saturday || day == Day::Sunday) {
+        if (day == Day::Saturday || day == Day::Sunday || date.is_holiday()) {
             std::cout << std::endl << "[Ese dia no es laborable]" << std::endl;
             continue;
         }

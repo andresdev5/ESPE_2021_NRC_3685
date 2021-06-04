@@ -51,7 +51,7 @@ Date Date::read(std::string label) {
         valid = true;
         std::string date_str;
 
-        std::cout << (label.empty() ? "Ingrese una fecha (dd/MM/YYY): " : label) << std::endl;
+        std::cout << (label.empty() ? "Ingrese una fecha (dd/MM/YYY): " : label);
         std::cin >> date_str;
 
         std::regex pattern("^(0?[1-9]|[12][0-9]|3[01])[\\/\\-](0?[1-9]|1[012])[\\/\\-](\\d{4})$");
