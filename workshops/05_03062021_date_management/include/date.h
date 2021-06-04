@@ -4,6 +4,8 @@
 
 enum class Day { Monday = 1, Thuesday = 2, Wednesday = 3, Thursday = 4, Friday = 5, Saturday = 6, Sunday = 7 };
 
+class Date;
+
 class Date {
 public:
     Date();
@@ -16,6 +18,8 @@ public:
     std::chrono::system_clock::time_point to_time_point();
     void update(std::chrono::system_clock::time_point time_point);
     void add_days(int days);
+    int last_month_day();
+    bool is_holiday();
     Day get_weekday();
     int get_day();
     int get_month();

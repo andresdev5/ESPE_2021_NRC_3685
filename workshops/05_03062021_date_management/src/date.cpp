@@ -152,7 +152,33 @@ void Date::add_days(int days) {
 
     date::year_month_day future = date + date::days{days};
 
-    update(date::sys_days {future});
+    update(date::sys_days{future});
+}
+
+int Date::last_month_day() {
+    auto time_point = to_time_point();
+    auto date = date::floor<date::days>(time_point);
+    date::year_month_day ymd{date};
+    date::year_month_day_last last_day{ymd.year(), date::month_day_last{ymd.month()}};
+
+    return unsigned(last_day.day());
+}
+
+bool Date::is_holiday() {
+    std::vector<std::pair<int, int>> holidays = {std::make_pair(1, 1), std::make_pair(1, 2), std::make_pair(5, 1),
+        std::make_pair(5, 24), std::make_pair(7, 25), std::make_pair(8, 10), std::make_pair(10, 9),
+        std::make_pair(11, 2), std::make_pair(11, 3), std::make_pair(12, 25), std::make_pair(12, 31)};
+
+    bool is_holiday = false;
+
+    for (std::pair<int, int> holiday : holidays) {
+        if (holiday.first == get_month() && holiday.second == get_day()) {
+            is_holiday = true;
+            break;
+        }
+    }
+
+    return is_holiday;
 }
 
 int Date::get_day() {
