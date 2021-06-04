@@ -14,8 +14,9 @@ public:
     static bool is_valid(int day, int month, int year);
 
     std::chrono::system_clock::time_point to_time_point();
+    void update(std::chrono::system_clock::time_point time_point);
+    void add_days(int days);
     Day get_weekday();
-
     int get_day();
     int get_month();
     int get_year();

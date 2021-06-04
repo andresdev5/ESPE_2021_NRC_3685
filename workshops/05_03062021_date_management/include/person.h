@@ -5,9 +5,10 @@
 
 class Person {
 public:
-    Person(std::string name);
+    Person(std::string identiy_card, std::string name);
 
 private:
+    std::string identify_card;
     std::string name;
-    std::vector<Date> dates;
+    std::vector<Date> payment_dates;
 };

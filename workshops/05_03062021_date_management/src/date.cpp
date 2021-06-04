@@ -120,14 +120,39 @@ std::chrono::system_clock::time_point Date::to_time_point() {
         .tm_year = year - 1900,
     };
     tm.tm_isdst = -1;
-    return std::chrono::system_clock::from_time_t(std::mktime(&tm));
+
+    auto utc_date = std::chrono::system_clock::from_time_t(std::mktime(&tm));
+    auto since_epoch = utc_date.time_since_epoch();
+    since_epoch -= std::chrono::hours{5};  // GMT-5 bogota/Lima/Quito
+
+    std::chrono::system_clock::time_point utc_now{since_epoch};
+
+    return utc_now;
 }
 
 Day Date::get_weekday() {
     auto dp = date::floor<date::days>(to_time_point());
     date::weekday weekday{dp};
-
     return static_cast<Day>(weekday.iso_encoding());
+}
+
+void Date::update(std::chrono::system_clock::time_point time_point) {
+    auto dp = date::floor<date::days>(time_point);
+    date::year_month_day ymd{dp};
+
+    day = unsigned(ymd.day());
+    month = unsigned(ymd.month());
+    year = int(ymd.year());
+}
+
+void Date::add_days(int days) {
+    int hours = days / 86400;
+    auto time_point = to_time_point();
+    auto date = date::floor<date::days>(time_point);
+
+    date::year_month_day future = date + date::days{days};
+
+    update(date::sys_days {future});
 }
 
 int Date::get_day() {
