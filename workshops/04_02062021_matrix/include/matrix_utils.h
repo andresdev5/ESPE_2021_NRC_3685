@@ -86,13 +86,13 @@ Matrix<T> MatrixUtils::multiply(Matrix<T> matrixA, Matrix<T> matrixB) {
 
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-            int sum = 0;
-
             for (int k = 0; k < size; k++) {
-                sum += matrixA.get_element(i, k) * matrixB.get_element(k, j);
+                T product = matrixA.get_element(i, k) * matrixB.get_element(k, j);
+                T current = result.get_element(i, j);
+
+                result.set_element(i, j, current + product);
             }
 
-            result.set_element(i, j, sum);
         }
     }
 
