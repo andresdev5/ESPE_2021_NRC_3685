@@ -9,7 +9,7 @@ public:
 
     void set_identify_card (std::string set_identify_card);
     std::string get_identify_card();
-    
+
     void set_name (std:: string name);
     std::string get_name ();
 
