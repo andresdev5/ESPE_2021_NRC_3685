@@ -3,9 +3,6 @@ project(date_management VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include(CTest)
-enable_testing()
-
 include_directories("${PROJECT_SOURCE_DIR}/include")
 include_directories("${PROJECT_SOURCE_DIR}/external/date/include")
 
@@ -21,6 +18,10 @@ set(PROJECT_FILES
     "include/application.h"
     "src/application.cpp"
 )
+
+include(CTest)
+enable_testing()
+ADD_SUBDIRECTORY(tests)
 
 add_executable(date_management src/main.cpp ${PROJECT_FILES})
 
