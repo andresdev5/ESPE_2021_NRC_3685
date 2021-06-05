@@ -10,3 +10,15 @@ workshops/**/*.vcxproj.*
 workshops/**/Makefile.win
 workshops/**/*.o
 workshops/**/*.exe
+extras/**/build/*
+extras/**/bin/*
+extras/**/Debug/*
+extras/**/obj/*
+extras/**/.vscode/*
+extras/**/.vs
+extras/**/*.layout
+extras/**/*.depend
+extras/**/*.vcxproj.*
+extras/**/Makefile.win
+extras/**/*.o
+extras/**/*.exe
