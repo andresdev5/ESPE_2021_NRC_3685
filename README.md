@@ -10,3 +10,5 @@ Repositorio para el grupo en la asignatura de estructura de datos
 - **04:** [Matriz dinámica](https://github.com/whitedev93/ESPE_2021_NRC_3685/tree/main/workshops/04_02062021_matrix) (02-06-2021)
 - **05:** [Administrador fechas](https://github.com/whitedev93/ESPE_2021_NRC_3685/tree/main/workshops/05_03062021_date_management) (03-06-2021)
 
+## Extras
+- **01:** [Torres de Hanoi](https://github.com/whitedev93/ESPE_2021_NRC_3685/tree/main/extras/01_04062021_towers_of_hanoi) (04-06-2021)
