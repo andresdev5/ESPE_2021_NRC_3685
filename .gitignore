@@ -24,3 +24,6 @@ extras/**/*.vcxproj.*
 extras/**/Makefile.win
 extras/**/*.o
 extras/**/*.exe
+
+!workshops/**/.vscode/settings.json
+!extras/**/.vscode/settings.json
