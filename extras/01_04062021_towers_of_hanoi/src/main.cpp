@@ -1,3 +1,5 @@
+#define SFML_STATIC 1
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>

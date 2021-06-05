@@ -14,7 +14,11 @@ include_directories(${SFML_DIR}/include)
 include(CTest)
 enable_testing()
 
-add_executable(TowersOfHanoi main.cpp)
+set(PROJECT_SOURCES
+    src/main.cpp
+)
+
+add_executable(TowersOfHanoi ${PROJECT_SOURCES})
 
 target_link_directories(TowersOfHanoi PUBLIC "${SFML_DIR}/lib")
 target_link_libraries(TowersOfHanoi
