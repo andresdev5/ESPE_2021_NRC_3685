@@ -8,7 +8,7 @@ int main() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 10;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!", (sf::Style::Titlebar | sf::Style::Close), settings);
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Torres de Hanoi", (sf::Style::Titlebar | sf::Style::Close), settings);
 
     sf::RectangleShape shape(sf::Vector2f(100, 100));
     shape.setFillColor(sf::Color(52, 152, 219));

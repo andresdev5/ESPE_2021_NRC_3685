@@ -1,4 +1,5 @@
 workshops/**/build/*
+workshops/**/devcpp-build/*
 workshops/**/bin/*
 workshops/**/Debug/*
 workshops/**/obj/*
@@ -11,6 +12,7 @@ workshops/**/Makefile.win
 workshops/**/*.o
 workshops/**/*.exe
 extras/**/build/*
+extras/**/devcpp-build/*
 extras/**/bin/*
 extras/**/Debug/*
 extras/**/obj/*
