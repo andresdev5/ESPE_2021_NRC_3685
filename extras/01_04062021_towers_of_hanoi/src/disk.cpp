@@ -22,6 +22,10 @@ sf::Vector2f Disk::get_position() {
     return position;
 }
 
+sf::Vector2f Disk::get_size() {
+    return size;
+}
+
 void Disk::set_color(sf::Color color) {
     this->color = color;
     shape.setFillColor(color);

@@ -51,8 +51,17 @@ void Application::run() {
 
     int ui_total_disks = total_disks;
 
+    sf::Time dt;
+    sf::Time elapsed_time;
+    sf::Clock clock;
+    bool resolve = false;
+
     while (window->isOpen()) {
         sf::Event event;
+
+        elapsed_time += clock.getElapsedTime();
+        dt = clock.getElapsedTime();
+        clock.restart();
 
         while (window->pollEvent(event)) {
             ImGui::SFML::ProcessEvent(event);
@@ -80,13 +89,23 @@ void Application::run() {
         }
 
         if (ImGui::Button("resolver", ImVec2(80, 27))) {
-            for (auto step : hanoi_steps) {
-                Rod *from = std::get<0>(step);
-                Rod *to = std::get<1>(step);
+            resolve = true;
+        }
 
-                Disk *disk = from->remove_disk();
-                to->add_disk(disk);
+        if (resolve && !hanoi_steps.empty() && elapsed_time.asMilliseconds() > 100) {
+            auto step = hanoi_steps.front();
+            Rod *from = std::get<0>(step);
+            Rod *to = std::get<1>(step);
+
+            Disk *disk = from->remove_disk();
+            to->add_disk(disk);
+            hanoi_steps.erase(hanoi_steps.begin());
+
+            if (hanoi_steps.empty()) {
+                resolve = false;
             }
+
+            elapsed_time = sf::milliseconds(0);
         }
 
         ImGui::End();

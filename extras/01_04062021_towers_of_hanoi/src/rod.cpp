@@ -43,7 +43,6 @@ std::string Rod::get_name() {
 }
 
 void Rod::draw(sf::RenderWindow *window) {
-    // window->draw();
     sf::Vector2f pillar_position(position.x + (base.getSize().x / 2 - pillar.getSize().x / 2), position.y);
     sf::Vector2f base_position(position.x, position.y + pillar.getSize().y);
 
@@ -66,7 +65,7 @@ void Rod::draw(sf::RenderWindow *window) {
         sf::Vector2f disk_position = disk->get_position();
 
         disk->set_position(sf::Vector2f(
-            base.getPosition().x + 10 + (margin * i),
+            pillar.getPosition().x - (disk->get_size().x / 2) + (15 / 2),
             base.getPosition().y - (5 * (i + 1)) - (32.5 * (i + 1)) + 1
         ));
 

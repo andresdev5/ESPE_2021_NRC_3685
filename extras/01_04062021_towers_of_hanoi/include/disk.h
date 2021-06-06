@@ -8,6 +8,7 @@ public:
     void set_color(sf::Color color);
     void set_position(sf::Vector2f position);
     sf::Vector2f get_position();
+    sf::Vector2f get_size();
 
 private:
     sf::RectangleShape shape;
