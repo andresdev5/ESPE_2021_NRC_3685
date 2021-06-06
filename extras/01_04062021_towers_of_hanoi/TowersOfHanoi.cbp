@@ -14,17 +14,24 @@
 				<Compiler>
 					<Add option="-std=gnu++11" />
 					<Add option="-g" />
+					<Add option="-DSFML_STATIC" />
 					<Add directory="include" />
 					<Add directory="external/SFML/include" />
+					<Add directory="external/imgui-sfml/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-static" />
+					<Add library="ImGui-SFML" />
+					<Add library="sfml-main" />
 					<Add library="sfml-window-s" />
-					<Add library="sfml-system-s" />
 					<Add library="sfml-graphics-s" />
+					<Add library="sfml-system-s" />
 					<Add library="opengl32" />
 					<Add library="winmm" />
 					<Add library="gdi32" />
+					<Add library="imm32" />
 					<Add directory="external/SFML/lib" />
+					<Add directory="external/imgui-sfml/lib" />
 				</Linker>
 				<Environment>
 					<Variable name="SFML_STATIC" value="1" />
@@ -46,7 +53,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include/application.h" />
+		<Unit filename="include/disk.h" />
+		<Unit filename="include/rod.h" />
+		<Unit filename="src/application.cpp" />
+		<Unit filename="src/disk.cpp" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/rod.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

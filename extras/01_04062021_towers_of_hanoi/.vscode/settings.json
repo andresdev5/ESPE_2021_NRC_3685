@@ -21,7 +21,6 @@
         "**/bin/": true,
         "**/.vs/": true
     },
-    "editor.formatOnSave": true,
     "files.associations": {
         "array": "cpp",
         "atomic": "cpp",
@@ -78,6 +77,8 @@
         "map": "cpp",
         "regex": "cpp",
         "shared_mutex": "cpp",
-        "stop_token": "cpp"
-    }
+        "stop_token": "cpp",
+        "set": "cpp"
+    },
+    "discord.enabled": false
 }
