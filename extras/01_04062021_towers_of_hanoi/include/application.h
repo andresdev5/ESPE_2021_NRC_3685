@@ -6,6 +6,7 @@
 #include <functional>
 #include <vector>
 #include <tuple>
+#include <sstream>
 
 class Application {
 public:
@@ -23,4 +24,6 @@ private:
     Rod *rod_c = new Rod("Torre C");
     int total_disks = 8;
     std::vector<std::tuple<Rod *, Rod *>> hanoi_steps;
+    std::string hanoi_logger;
+    std::stringstream hanoi_logger_stream;
 };

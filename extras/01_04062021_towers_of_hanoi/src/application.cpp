@@ -35,7 +35,9 @@ Application::Application() {
 }
 
 void Application::run() {
+    hanoi_logger_stream.str("");
     hanoi_solver(total_disks, rod_a, rod_c, rod_b);
+    hanoi_logger = hanoi_logger_stream.str();
 
     ImGui::SFML::Init(*window);
     sf::Clock deltaClock;
@@ -78,7 +80,6 @@ void Application::run() {
         // ImGui::SetNextWindowSize(ImVec2(390, 120));
         ImGui::Begin("Opciones", &open,
             ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
-        // ImGui::InputText("Numero de discos", &total_disks_str, ImGuiInputTextFlags_CharsDecimal);
         ImGui::PushItemWidth(100);
 
         if (ImGui::InputInt("  Numero de discos", &ui_total_disks, 1, 100)) {
@@ -113,6 +114,14 @@ void Application::run() {
         }
 
         ImGui::End();
+
+        ImGui::SetNextWindowPos(ImVec2(580, 20));
+        ImGui::SetNextWindowBgAlpha(0.5f);
+        ImGui::Begin("Historial", &open,
+            ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
+        ImGui::InputTextMultiline("Registro", &hanoi_logger, ImVec2(400, 70));
+        ImGui::End();
+
         window->clear(sf::Color(200, 214, 229));
 
         rod_a->draw(window);
@@ -143,11 +152,14 @@ void Application::reset() {
         rod_a->add_disk(disk);
     }
 
+    hanoi_logger_stream.str("");
     hanoi_solver(total_disks, rod_a, rod_c, rod_b);
+    hanoi_logger = hanoi_logger_stream.str();
 }
 
 void Application::hanoi_solver(int n, Rod *from_rod, Rod *to_rod, Rod *aux_rod) {
     if (n == 1) {
+        hanoi_logger_stream << "Se ha movido el disco 1 desde " << from_rod->get_name() << " hasta " << to_rod->get_name() << std::endl;
         std::cout << "Se ha movido el disco 1 desde " << from_rod->get_name() << " hasta " << to_rod->get_name() << std::endl;
         hanoi_steps.push_back(std::make_tuple(from_rod, to_rod));
 
@@ -156,6 +168,7 @@ void Application::hanoi_solver(int n, Rod *from_rod, Rod *to_rod, Rod *aux_rod) 
 
     hanoi_solver(n - 1, from_rod, aux_rod, to_rod);
 
+    hanoi_logger_stream << "Se ha movido el disco " << n << " desde " << from_rod->get_name() << " hasta " << to_rod->get_name() << std::endl;
     std::cout << "Se ha movido el disco " << n << " desde " << from_rod->get_name() << " hasta " << to_rod->get_name() << std::endl;
     hanoi_steps.push_back(std::make_tuple(from_rod, to_rod));
 
