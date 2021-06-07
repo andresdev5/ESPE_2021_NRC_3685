@@ -173,4 +173,3 @@ void Application::hanoi_solver(int n, Rod *from_rod, Rod *to_rod, Rod *aux_rod) 
 
     hanoi_solver(n - 1, aux_rod, to_rod, from_rod);
 }
-
