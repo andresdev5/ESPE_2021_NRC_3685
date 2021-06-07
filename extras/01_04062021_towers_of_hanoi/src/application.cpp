@@ -15,7 +15,7 @@ Application::Application() {
     settings.antialiasingLevel = 2;
 
     this->window = new sf::RenderWindow(
-        sf::VideoMode(1024, 500), "Torres de Hanoi", (sf::Style::Titlebar | sf::Style::Close), settings);
+        sf::VideoMode(1024, 580), "Torres de Hanoi", (sf::Style::Titlebar | sf::Style::Close), settings);
 
     window->setVerticalSyncEnabled(true);
 
@@ -45,16 +45,17 @@ void Application::run() {
 
     sf::Vector2f rod_size = rod_a->get_size();
 
-    rod_a->set_position(sf::Vector2f(25, 110));
-    rod_b->set_position(sf::Vector2f(25 + rod_size.x + 25, 110));
-    rod_c->set_position(sf::Vector2f(25 + (rod_size.x * 2) + (25 * 2), 110));
+    rod_a->set_position(sf::Vector2f(25, 190));
+    rod_b->set_position(sf::Vector2f(25 + rod_size.x + 25, 190));
+    rod_c->set_position(sf::Vector2f(25 + (rod_size.x * 2) + (25 * 2), 190));
 
     int ui_total_disks = total_disks;
 
     sf::Time dt;
     sf::Time elapsed_time;
     sf::Clock clock;
-    bool resolve = false;
+    bool resolving = false;
+    float speed = 50.f;
 
     while (window->isOpen()) {
         sf::Event event;
@@ -73,6 +74,7 @@ void Application::run() {
 
         ImGui::SFML::Update(*window, deltaClock.restart());
         ImGui::SetNextWindowPos(ImVec2(20, 20));
+        ImGui::SetNextWindowBgAlpha(0.5f);
         // ImGui::SetNextWindowSize(ImVec2(390, 120));
         ImGui::Begin("Opciones", &open,
             ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
@@ -88,11 +90,13 @@ void Application::run() {
             }
         }
 
-        if (ImGui::Button("resolver", ImVec2(80, 27))) {
-            resolve = true;
+        ImGui::SliderFloat("Velocidad", &speed, 50.f, 700.f);
+
+        if (ImGui::Button("iniciar/pausar", ImVec2(110, 24))) {
+            resolving = !resolving;
         }
 
-        if (resolve && !hanoi_steps.empty() && elapsed_time.asMilliseconds() > 100) {
+        if (resolving && !hanoi_steps.empty() && elapsed_time.asMilliseconds() > (750 - speed)) {
             auto step = hanoi_steps.front();
             Rod *from = std::get<0>(step);
             Rod *to = std::get<1>(step);
@@ -102,7 +106,7 @@ void Application::run() {
             hanoi_steps.erase(hanoi_steps.begin());
 
             if (hanoi_steps.empty()) {
-                resolve = false;
+                resolving = false;
             }
 
             elapsed_time = sf::milliseconds(0);
