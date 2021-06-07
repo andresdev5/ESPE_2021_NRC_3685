@@ -78,7 +78,6 @@ void Application::run() {
         // ImGui::SetNextWindowSize(ImVec2(390, 120));
         ImGui::Begin("Opciones", &open,
             ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
-        // ImGui::InputText("Numero de discos", &total_disks_str, ImGuiInputTextFlags_CharsDecimal);
         ImGui::PushItemWidth(100);
 
         if (ImGui::InputInt("  Numero de discos", &ui_total_disks, 1, 100)) {
@@ -113,6 +112,14 @@ void Application::run() {
         }
 
         ImGui::End();
+
+        ImGui::SetNextWindowPos(ImVec2(580, 20));
+        ImGui::SetNextWindowBgAlpha(0.5f);
+        ImGui::Begin("Historial", &open,
+            ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse);
+        ImGui::InputTextMultiline("Registro", &hanoi_logger, ImVec2(400, 70));
+        ImGui::End();
+
         window->clear(sf::Color(200, 214, 229));
 
         rod_a->draw(window);
@@ -166,3 +173,4 @@ void Application::hanoi_solver(int n, Rod *from_rod, Rod *to_rod, Rod *aux_rod) 
 
     hanoi_solver(n - 1, aux_rod, to_rod, from_rod);
 }
+
