@@ -54,7 +54,11 @@ Rgb hsl2rgb(float h, float s, float l) {
 		b = hue2rgb(p, q, h - (1.f/3.f));
     }
 
-    Rgb value = { .red = r * 255, .green = g * 255, .blue = b * 255 };
+    Rgb value = {
+        .red = (int)std::round(r * 255),
+        .green = (int)std::round(g * 255),
+        .blue = (int)std::round(b * 255)
+    };
 
     return value;
 }
