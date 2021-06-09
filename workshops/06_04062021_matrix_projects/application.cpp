@@ -21,9 +21,9 @@ void Application::run() {
         system("cls");
         std::cout << "1: Sudoku" << std::endl;
         std::cout << "2: Triangulo de pascal" << std::endl;
-        std::cout << "3: Cuadrado Magico" << std::endl;
+        std::cout << "3: Cuadrado magico" << std::endl;
         std::cout << "4: Matriz identidad" << std::endl;
-        std::cout << "5: -" << std::endl;
+        std::cout << "5: Cuadrado latino" << std::endl;
         std::cout << "6: salir" << std::endl;
         std::cout << std::endl;
 
@@ -90,4 +90,3 @@ void Application::run() {
         }
     } while (opcion != 6);
  }
- 
