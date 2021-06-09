@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstdlib>
+#include "application.h"
 
-int main(int, char**) {
-    std::cout << "Hello, world!\n";
+int main(int argc, char **argv) {
+    Application::get_instance().run();
 }

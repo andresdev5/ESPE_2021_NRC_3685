@@ -1,10 +1,9 @@
 #include "application.h"
 #include <iostream>
-#include <math.h>
-#include <cstdlib>
 #include <limits>
-#include "operation.h"
-#include "matrix.h"
+#include <cstdlib>
+#include "sudoku/sudoku.h"
+#include "pascal_triangle/operation.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -16,12 +15,11 @@ void Application::run() {
 
     do {
         system("cls");
-        std::cout << "Funciones Matematicas" << std::endl << std::endl;
-        std::cout << "1: Cubo Magico" << std::endl;
-        std::cout << "2: Sudoku" << std::endl;
-        std::cout << "3: Triangulo de Pascal" << std::endl;
-        std::cout << "4: Cubo Latino" << std::endl;
-        std::cout << "5: Matriz Identidad" << std::endl;
+        std::cout << "1: Sudoku" << std::endl;
+        std::cout << "2: Triangulo de pascal" << std::endl;
+        std::cout << "3: -" << std::endl;
+        std::cout << "4: -" << std::endl;
+        std::cout << "5: -" << std::endl;
         std::cout << "6: salir" << std::endl;
         std::cout << std::endl;
 
@@ -33,31 +31,31 @@ void Application::run() {
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-        } while (opcion < 1 || opcion >6);
+        } while (opcion < 1 || opcion > 6);
 
         switch (opcion) {
             case 1: {
-                // Cubo Magico
+                Sudoku sudoku;
+                sudoku.generate();
+                sudoku.print();
             }
             break;
             case 2: {
-                // Sudoku
-            }
-            break;
-            case 3: {
                 Operation operation;
                 operation.final_score();
                 std::cout << std::endl;
             }
             break;
+            case 3: {
+                
+            }
+            break;
             case 4: {
-                // Cubo Latino
+                
             }
-            break;
             case 5: {
-                // Matriz Identidad
+                
             }
-            break;
         }
 
         if (opcion != 6) {
