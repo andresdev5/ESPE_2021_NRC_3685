@@ -89,15 +89,25 @@ void Sudoku::print() {
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (!show_solved) {
-                    std::cout << grid[i][j] << " ";
-                } else {
-                    std::cout << solved_grid[i][j] << " ";
-                }
+                int value;
 
-                if (j != 8) {
-                    std::cout << ", ";
+                if (!show_solved) {
+                    value = grid[i][j];
+                } else {
+                    value = solved_grid[i][j];
                 }
+                
+                if (value == 0) {
+                    std::cout << "  | ";
+                } else {
+                    std::cout << value << " | ";
+                }
+            }
+
+            std::cout << std::endl;
+            
+            for (int i = 0; i < 35; i++) {
+                std::cout << "-";
             }
 
             std::cout << std::endl;
