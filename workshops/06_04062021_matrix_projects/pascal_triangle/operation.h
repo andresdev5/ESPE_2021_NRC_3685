@@ -15,10 +15,9 @@
  * @autor Diego Jiménez
  * @autora Lizzette Zapata
 ********************************************************************/
-
 #pragma once
-class Operation
-{
+
+class Operation {
 public:
 	/**
 	* @brief segmentar
@@ -64,5 +63,8 @@ public:
 	* @return 
 	*/
 	void final_score();
+
+private:
+	int dimension;
 };
 

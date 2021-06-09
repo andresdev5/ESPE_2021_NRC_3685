@@ -9,8 +9,6 @@ set(SUDOKU_FILES
     "sudoku/sudoku.cpp"
     "pascal_triangle/operation.h"
     "pascal_triangle/operation.cpp"
-    "pascal_triangle/matrix.h"
-    "pascal_triangle/matrix.cpp"
     "application.h"
     "application.cpp"
 )
