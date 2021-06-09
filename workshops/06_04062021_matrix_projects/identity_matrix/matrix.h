@@ -10,7 +10,9 @@ public:
     Matrix(int size);
 
     /**
-     * @brief definir un elemento de una matriz dada una posicion
+     * @brief 
+     * 
+     *
      *
      * @param row indice de la fila
      * @param column indice de la columna
@@ -87,8 +89,6 @@ private:
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD:workshops/06_04062021_matrix_projects/latin_square/matrix.h
-=======
 
 template <typename T>
 Matrix<T>::Matrix(int size) : size(size) {
@@ -152,4 +152,3 @@ template <typename T>
 T *& Matrix<T>::operator [](int index) {
     return data[index];
 }
->>>>>>> 4d9124bb40aa3f3314e8aede14bf9e21864a4f2c:workshops/06_04062021_matrix_projects/identity_matrix/matrix.h
