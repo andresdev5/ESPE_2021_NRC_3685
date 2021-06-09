@@ -72,13 +72,137 @@ public:
     template <typename T>
     static void print_matrix(Matrix<T> matrix);
 
-   
+    /**
+     * @brief genera un cuadrado latino con un tamaño n dado
+     * 
+     * @tparam T 
+     * @param siz3 
+     * @return Matrix<T> 
+     */
+    template <typename T>
+    static Matrix<T> generate_latin_square_origin(Matrix<T> &sol);
+
+    /**
+     * @brief genera una matriz identidad de tamaño n
+     * 
+     * @tparam T 
+     * @param size 
+     * @return Matrix<T> 
+     */
+    template <typename T>
+    static Matrix<T> generate_identity_random(Matrix<T> &sol);
+
+    /**
+     * @brief genera una matriz latina base
+     * 
+     * @tparam T 
+     * @param kernel 
+     * @return Matrix<T> 
+     */
+    template<typename T>
+    static Matrix<T> generate_kernel(Matrix<T> &kernel);
+
+    /**
+     * @brief devuelve un vector donde el primer elemento se pone al final y todos los demas se recorren
+     * 
+     * @param vector 
+     * @return p* 
+     */
+    static int* recorrer(int* &vector, int size);
+
+    /**
+     * @brief intercambia las filas de una matriz
+     * 
+     * @tparam T 
+     */
+    template <typename T>
+    static void interchange(Matrix<T> mat, int a, int b);
 };
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    template < typename T>
+    static Matrix<T> generate_identity_random(Matrix<T> &sol){
+        double zero = 0;
+        double one = 1;
+        int size = sol.get_size();
+        Matrix<T>::fill(sol,zero);
+        for (int i = 0; i < size; i++)
+        {
+            for(int j = 0; j < size; j++)
+            {
+                if(i==j){
+                    sol.set_element(i,j,one);
+                }                
+            }
+        }
+        std::random_device rd;
+        std::uniform_int_distribution<> dist(0, size-1);
+        static std::mt19937_64 random_generator(std::chrono::system_clock::now().time_since_epoch().count());
+        for (int i = 0; i < 20; i++)
+        {
+            int a = dist(random_generator);
+            int b = dist(random_generator);
+            if(a != b){
+                interchange(sol,a,b);
+            }
+        }
+        return sol;
+    }
+
+    static int* recorrer(int* vector, int size){
+        int aux = *vector;
+        for (int i = 0; i < size-1; i++)
+            *(vector + i) = *(vector + i + 1); 
+        *(vector + size - 1) = aux;
+        return vector;
+    }
+
+    template<typename T>
+    static Matrix<T> generate_kernel(Matrix<T> &kernel){
+        int size = kernel.get_size();
+        int *base;
+        int  desfase = 0;
+        for (int i = 0; i < size; i++)
+        {
+            *(base + i)= i;
+        }
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                kernel.set_element(i,j,*(base + j) );
+            }
+            base = recorrer(base,size);    
+        }
+        return kernel;
+    }
+
+    template <typename T>
+    static void interchange(Matrix<T> mat, int a, int b){
+        int size = mat.get_size();
+        T* aux;
+        for (int i = 0; i < size; i++)
+        {
+            *(aux + i) = mat.get_element(a,i);
+        }
+        for (int i = 0; i < size; i++)
+        {
+            mat.set_element(a,i,mat.get_element(b,i));
+            mat.set_element(b,i,*(aux + i));
+        }
+    }
+
+    template <typename T>
+    static Matrix<T> generate_latin_square_origin(Matrix<T> &sol){
+        int siz3 = sol.get_size;
+        Matrix<T> idr(siz3);
+        Matrix<T> kernel(siz3);
+        generate_identity_random(idr);
+        generate_kernel(kernel);
+        sol = MatrixUtils::multiply(kernel,idr);
+        return sol;
+    }
 
 template <typename T>
 Matrix<T> MatrixUtils::multiply(Matrix<T> matrixA, Matrix<T> matrixB) {
@@ -129,6 +253,8 @@ void MatrixUtils::fill_random(Matrix<T> &matrix, int min, int max) {
         }
     }
 }
+
+
 
 template <typename T>
 void MatrixUtils::fill(Matrix<T> &matrix, T value) {

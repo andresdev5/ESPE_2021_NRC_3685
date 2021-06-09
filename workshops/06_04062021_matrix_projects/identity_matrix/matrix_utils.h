@@ -1,6 +1,5 @@
 #pragma once
 #include "matrix.h"
-#include "utils.h"
 #include <iostream>
 #include <stdexcept>
 #include <random>
@@ -10,48 +9,6 @@
 
 class MatrixUtils {
 public:
-    /**
-     * @brief multiplica 2 matrices y regresa la matriz resultante
-     *
-     * @tparam T tipo de dato que contendra la matriz
-     * @param matrixA matriz A
-     * @param matrixB matriz B
-     * @return Matrix<T> matriz resultante
-     */
-    template <typename T>
-    static Matrix<T> multiply(Matrix<T> matrixA, Matrix<T> matrixB);
-
-    /**
-     * @brief multiplica una matriz n veces y retorna esa nueva matriz
-     *
-     * @tparam T tipo de dato que contendra la matriz
-     * @param matrix matriz a ser multiplicada
-     * @param exponent cantidad de veces que se multiplicara
-     * @return Matrix<T> matriz resultante
-     */
-    template <typename T>
-    static Matrix<T> pow(Matrix<T> matrix, int exponent);
-
-    /**
-     * @brief solicita por consola los valores de una matriz, para posteriormente actualizar la matriz con
-     * dichos valores
-     *
-     * @tparam T tipo de dato de la matriz
-     * @param matrix matriz a ser editada
-     */
-    template <typename T>
-    static void interactive_input(Matrix<T> &matrix);
-
-    /**
-     * @brief llena una matriz con un valor dado
-     *
-     * @tparam T tipo de dato de la matriz
-     * @param matrix matriz a ser llenada
-     * @param value valor con el que se llenara la matriz
-     */
-    template <typename T>
-    static void fill(Matrix<T> &matrix, T value);
-
     /**
      * @brief llena una matriz de valores aleatorios generados entre un minimo y maximo
      *
@@ -70,50 +27,10 @@ public:
      * @param matrix matriz a ser mostrada
      */
     template <typename T>
-    static void print_matrix(Matrix<T> matrix);
-
-   
+    static void print(Matrix<T> matrix);
 };
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-template <typename T>
-Matrix<T> MatrixUtils::multiply(Matrix<T> matrixA, Matrix<T> matrixB) {
-    if (matrixA.get_size() != matrixB.get_size()) {
-        throw std::runtime_error("cannot multiply matrixA and matrixB, they have different size.");
-    }
-
-    int size = matrixA.get_size();
-    Matrix<T> result(matrixA.get_size());
-
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            for (int k = 0; k < size; k++) {
-                T product = matrixA.get_element(i, k) * matrixB.get_element(k, j);
-                T current = result.get_element(i, j);
-
-                result.set_element(i, j, current + product);
-            }
-
-        }
-    }
-
-    return result;
-}
-
-template <typename T>
-Matrix<T> MatrixUtils::pow(Matrix<T> matrix, int exponent) {
-    Matrix<T> result = matrix;
-
-    for (int i = 0; i < exponent - 1; i++) {
-        result = MatrixUtils::multiply<T>(result, matrix);
-    }
-
-    return result;
-}
 
 template <typename T>
 void MatrixUtils::fill_random(Matrix<T> &matrix, int min, int max) {
@@ -131,90 +48,7 @@ void MatrixUtils::fill_random(Matrix<T> &matrix, int min, int max) {
 }
 
 template <typename T>
-void MatrixUtils::fill(Matrix<T> &matrix, T value) {
-    int size = matrix.get_size();
-
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            matrix.set_element(i, j, value);
-        }
-    }
-}
-
-template <typename T>
-void MatrixUtils::interactive_input(Matrix<T> &matrix) {
-    bool requesting = true;
-    int size = matrix.get_size();
-
-    while (true) {
-        system("cls");
-        print_matrix(matrix);
-
-        int x, y;
-
-        std::cout << std::endl << std::endl;
-
-        do {
-            std::string input;
-            std::smatch matches;
-            std::regex pattern("\\(?\\s*([0-9]+)\\s*,\\s*([0-9]+)\\s*\\)?");
-
-            std::cout << "ingresa una coordenada (#,#) o 'c' para salir:";
-            std::cin >> input;
-
-            trim(input);
-            tolowercase(input);
-
-            if (input == "c") {
-                requesting = false;
-                break;
-            }
-
-            if (!std::regex_match(input, matches, pattern)) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                continue;
-            }
-
-            x = std::stoi(matches[1]);
-            y = std::stoi(matches[2]);
-
-            if (x < 0 || y < 0 || y > size - 1 || x > size - 1) {
-                std::cout << std::endl << "[la coordenada seleccionada esta fuera de los limites de la matriz]";
-                std::cout << std::endl << std::endl;
-                continue;
-            }
-
-            break;
-        } while (true);
-
-        if (!requesting) {
-            break;
-        }
-
-        int value;
-
-        do {
-            std::cout << "ingresa un valor para esa coordenada: ";
-            std::cin >> value;
-
-            if (std::cin.fail()) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                continue;
-            }
-
-            break;
-        } while (true);
-
-        matrix.set_element(y, x, value);
-    }
-
-    system("cls");
-}
-
-template <typename T>
-void MatrixUtils::print_matrix(Matrix<T> matrix) {
+void MatrixUtils::print(Matrix<T> matrix) {
     int m = matrix.get_size();
     int n = matrix.get_size();
 
