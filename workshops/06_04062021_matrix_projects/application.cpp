@@ -4,16 +4,10 @@
 #include <cstdlib>
 #include "sudoku/sudoku.h"
 #include "pascal_triangle/operation.h"
-<<<<<<< HEAD
-#include "latin_square/matrix.h"
-#include "latin_square/matrix_utils.h"
-#include "latin_square/utils.h"
-=======
 #include "magic_square/CuadradoMagico.h"
 #include "identity_matrix/matrix.h"
 #include "identity_matrix/identity_matrix.h"
 #include "latin_square/latin_square.h"
->>>>>>> 817255f8958215af0b531c30326280361ae1b341
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -27,15 +21,9 @@ void Application::run() {
         system("cls");
         std::cout << "1: Sudoku" << std::endl;
         std::cout << "2: Triangulo de pascal" << std::endl;
-<<<<<<< HEAD
-        std::cout << "3: -" << std::endl;
-        std::cout << "4: Cuadrado Latino" << std::endl;
-        std::cout << "5: -" << std::endl;
-=======
         std::cout << "3: Cuadrado magico" << std::endl;
         std::cout << "4: Matriz identidad" << std::endl;
         std::cout << "5: Cuadrado latino" << std::endl;
->>>>>>> 817255f8958215af0b531c30326280361ae1b341
         std::cout << "6: salir" << std::endl;
         std::cout << std::endl;
 
@@ -72,16 +60,6 @@ void Application::run() {
             }
             break;
             case 4: {
-<<<<<<< HEAD
-                std::cout << "Ingrese el numero de la dimension del cuadrado latino " << std::endl;
-                int size;
-                std::cin >> size;
-                std::cout << "falta arreglar una referencia " << std::endl;
-                // Matrix<long long> mat(size);
-                // MatrixUtils::generate_latin_square_origin(mat);
-                // MatrixUtils::print_matrix(mat);
-                
-=======
                 int n;
 
                 std::cout << "ingrese la dimension de la matriz: ";
@@ -93,7 +71,6 @@ void Application::run() {
                 std::cout << std::endl << std::endl;
                 matrix.calculate();
                 matrix.print();
->>>>>>> 817255f8958215af0b531c30326280361ae1b341
             }
             break;
             case 5: {
