@@ -15,6 +15,8 @@ set(PROJECT_FILES
     "identity_matrix/matrix_utils.h"
     "identity_matrix/identity_matrix.h"
     "identity_matrix/identity_matrix.cpp"
+    "latin_square/latin_square.h"
+    "latin_square/latin_square.cpp"
 
     "application.h"
     "application.cpp"

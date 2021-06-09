@@ -5,7 +5,9 @@
 #include "sudoku/sudoku.h"
 #include "pascal_triangle/operation.h"
 #include "magic_square/CuadradoMagico.h"
-#include "identity_matrix/identity_matrix.h";
+#include "identity_matrix/matrix.h"
+#include "identity_matrix/identity_matrix.h"
+#include "latin_square/latin_square.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -71,7 +73,14 @@ void Application::run() {
                 matrix.print();
             }
             case 5: {
-                
+                int size;
+
+                std::cout << "Ingrese la dimension: " << std::endl;
+                std::cin >> size;
+
+                LatinSquare latin_square(size);
+                latin_square.generate();
+                latin_square.print();
             }
         }
 
@@ -81,3 +90,4 @@ void Application::run() {
         }
     } while (opcion != 6);
  }
+ 

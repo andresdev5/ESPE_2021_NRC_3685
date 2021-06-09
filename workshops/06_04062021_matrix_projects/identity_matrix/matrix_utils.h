@@ -21,6 +21,16 @@ public:
     static void fill_random(Matrix<T> &matrix, int min, int max);
 
     /**
+     * @brief llena una matriz con un valor dado
+     *
+     * @tparam T tipo de dato de la matriz
+     * @param matrix matriz a ser llenada
+     * @param value valor con el que se llenara la matriz
+     */
+    template <typename T>
+    static void fill(Matrix<T> &matrix, T value);
+
+    /**
      * @brief imprime una matriz
      *
      * @tparam T tipo de dato de la matriz
@@ -43,6 +53,17 @@ void MatrixUtils::fill_random(Matrix<T> &matrix, int min, int max) {
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             matrix.set_element(i, j, dist(random_generator));
+        }
+    }
+}
+
+template <typename T>
+void MatrixUtils::fill(Matrix<T> &matrix, T value) {
+    int size = matrix.get_size();
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            matrix.set_element(i, j, value);
         }
     }
 }
