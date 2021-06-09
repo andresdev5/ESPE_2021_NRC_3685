@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "sudoku/sudoku.h"
 #include "pascal_triangle/operation.h"
+#include "magic_square/CuadradoMagico.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -17,7 +18,7 @@ void Application::run() {
         system("cls");
         std::cout << "1: Sudoku" << std::endl;
         std::cout << "2: Triangulo de pascal" << std::endl;
-        std::cout << "3: -" << std::endl;
+        std::cout << "3: Cuadrado Magico" << std::endl;
         std::cout << "4: -" << std::endl;
         std::cout << "5: -" << std::endl;
         std::cout << "6: salir" << std::endl;
@@ -47,7 +48,12 @@ void Application::run() {
             }
             break;
             case 3: {
-                
+                CuadradoMagico cuadrado;
+                for (int i = 3; i <= 10; i++) {
+                    cuadrado.crearCuadrado(i);
+                    std::cout << std::endl << std::endl;
+		            cuadrado.imprimir();
+                }
             }
             break;
             case 4: {
@@ -63,4 +69,4 @@ void Application::run() {
             system("pause");
         }
     } while (opcion != 6);
-}
+ }

@@ -13,6 +13,8 @@ set(SUDOKU_FILES
     "pascal_triangle/matrix.cpp"
     "application.h"
     "application.cpp"
+    "magic_square/CuadradoMagico.h"
+    "magic_square/CuadradoMagico.cpp"
 )
 
 add_executable(matrix_projects main.cpp ${SUDOKU_FILES})
