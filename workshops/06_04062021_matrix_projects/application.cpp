@@ -4,6 +4,9 @@
 #include <cstdlib>
 #include "sudoku/sudoku.h"
 #include "pascal_triangle/operation.h"
+#include "latin_square/matrix.h"
+#include "latin_square/matrix_utils.h"
+#include "latin_square/utils.h"
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -18,7 +21,7 @@ void Application::run() {
         std::cout << "1: Sudoku" << std::endl;
         std::cout << "2: Triangulo de pascal" << std::endl;
         std::cout << "3: -" << std::endl;
-        std::cout << "4: -" << std::endl;
+        std::cout << "4: Cuadrado Latino" << std::endl;
         std::cout << "5: -" << std::endl;
         std::cout << "6: salir" << std::endl;
         std::cout << std::endl;
@@ -51,6 +54,13 @@ void Application::run() {
             }
             break;
             case 4: {
+                std::cout << "Ingrese el numero de la dimension del cuadrado latino " << std::endl;
+                int size;
+                std::cin >> size;
+                std::cout << "falta arreglar una referencia " << std::endl;
+                // Matrix<long long> mat(size);
+                // MatrixUtils::generate_latin_square_origin(mat);
+                // MatrixUtils::print_matrix(mat);
                 
             }
             case 5: {
