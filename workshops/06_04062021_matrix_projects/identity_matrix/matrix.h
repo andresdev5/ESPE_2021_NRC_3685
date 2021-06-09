@@ -1,11 +1,12 @@
 #pragma once
 #include <cstdlib>
 #include <exception>
-#include "matrix_utils.h"
+#include <iostream>
 
 template <typename T>
 class Matrix {
 public:
+    Matrix() = default;
     Matrix(int size);
 
     /**
@@ -53,6 +54,24 @@ public:
      */
     void free();
 
+    /**
+     * @brief sobrecarga del operador "[]" para el acceso 
+     * a elementos de la matriz
+     * 
+     * @param matrix matriz a sumarse
+     * @return Matrix matriz resultante
+     */
+    T *operator [](int index) const;
+
+    /**
+     * @brief sobrecarga del operador "[]" para acceso por referencia 
+     * a elementos de la matriz
+     * 
+     * @param matrix matriz a sumarse
+     * @return Matrix matriz resultante
+     */
+    T *&operator [](int index);
+
 private:
     /**
      * @brief arreglo bidimensional
@@ -64,9 +83,7 @@ private:
      * @brief tamaño de la matriz cuadrada
      *
      */
-    int size;
-
-    MatrixUtils matriz;
+    int size = 0;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,4 +139,14 @@ void Matrix<T>::free() {
     }
 
     free(data);
+}
+
+template <typename T>
+T * Matrix<T>::operator [](int index) const {
+    return data[index];
+}
+
+template <typename T>
+T *& Matrix<T>::operator [](int index) {
+    return data[index];
 }

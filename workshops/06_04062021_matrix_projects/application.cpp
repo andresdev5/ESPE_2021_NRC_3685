@@ -5,6 +5,7 @@
 #include "sudoku/sudoku.h"
 #include "pascal_triangle/operation.h"
 #include "magic_square/CuadradoMagico.h"
+#include "identity_matrix/identity_matrix.h";
 
 Application &Application::get_instance() {
     static auto &&instance = Application();
@@ -19,7 +20,7 @@ void Application::run() {
         std::cout << "1: Sudoku" << std::endl;
         std::cout << "2: Triangulo de pascal" << std::endl;
         std::cout << "3: Cuadrado Magico" << std::endl;
-        std::cout << "4: -" << std::endl;
+        std::cout << "4: Matriz identidad" << std::endl;
         std::cout << "5: -" << std::endl;
         std::cout << "6: salir" << std::endl;
         std::cout << std::endl;
@@ -57,7 +58,17 @@ void Application::run() {
             }
             break;
             case 4: {
-                
+                int n;
+
+                std::cout << "ingrese la dimension de la matriz: ";
+                std::cin >> n;
+
+                IdentityMatrix matrix(n);
+                matrix.print();
+
+                std::cout << std::endl << std::endl;
+                matrix.calculate();
+                matrix.print();
             }
             case 5: {
                 
