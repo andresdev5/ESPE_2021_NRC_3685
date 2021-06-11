@@ -30,8 +30,24 @@ int main(int argc, char **argv) {
         std::cout << "[elemento agregado]" << std::endl;
     }));
 
-    menu.add_option(MenuOption("Agregar elemento al inicio", [](MenuOptionArguments args) {
-        std::cout << "[no implementado aun]" << std::endl;
+    menu.add_option(MenuOption("Agregar elemento al inicio", [&](MenuOptionArguments args) {
+        int value;
+
+        do {
+            std::cout << "ingrese un valor: ";
+            std::cin >> value;
+
+            if (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                continue;
+            }
+
+            break;
+        } while (true);
+
+        list.push_front(value);
+        std::cout << "[elemento agregado]" << std::endl;
     }));
 
     menu.add_option(MenuOption("Eliminar elemento", [&](MenuOptionArguments args) {
