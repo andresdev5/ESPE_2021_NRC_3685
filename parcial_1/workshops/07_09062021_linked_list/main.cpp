@@ -80,12 +80,41 @@ int main(int argc, char **argv) {
         items_menu.display();
     }, false));
 
-    menu.add_option(MenuOption("Buscar elemento", [](MenuOptionArguments args) {
-        std::cout << "[no implementado aun]" << std::endl;
+    menu.add_option(MenuOption("Buscar elemento", [&](MenuOptionArguments args) {
+        int value;
+
+        do {
+            std::cout << "ingrese un valor: ";
+            std::cin >> value;
+
+            if (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                continue;
+            }
+
+            break;
+        } while (true);
+
+        int found_index;
+        Node<int> *found = list.find([&](int element, int index) {
+            found_index = index;
+            return value == element;
+        });
+
+        if (found == nullptr) {
+            std::cout << "elemento no encontrado" << std::endl;
+        } else {
+            std::cout << "elemento encontrado en la posicion " << found_index << std::endl;
+        }
     }));
 
-    menu.add_option(MenuOption("Imprimir lista", [](MenuOptionArguments args) {
-        std::cout << "[no implementado aun]" << std::endl;
+    menu.add_option(MenuOption("Imprimir lista", [&](MenuOptionArguments args) {
+        list.for_each([](int element) {
+            std::cout << element << " -> ";
+        });
+
+        std::cout << " NULL";
     }));
 
     menu.add_option(MenuOption("salir", [&](MenuOptionArguments args) {

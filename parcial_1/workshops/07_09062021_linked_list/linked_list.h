@@ -16,15 +16,17 @@ class LinkedList {
 
         void remove_at(int index);
 
+        void for_each(std::function<void(Node<T> *, int)> callback);
         void for_each(std::function<void(Node<T>*)> callback);
-        void for_each(std::function<void(Node<T>*, int)> callback);
-        void for_each(std::function<void(T)> callback);
         void for_each(std::function<void(T, int)> callback);
+        void for_each(std::function<void(T)> callback);
         
         void until(std::function<bool(Node<T>*)> callback);
         void until(std::function<bool(T)> callback);
 
+        Node<T> *find(std::function<bool(Node<T> *, int)> callback);
         Node<T>* find(std::function<bool(Node<T>*)> callback);
+        Node<T> *find(std::function<bool(T, int)> callback);
         Node<T>* find(std::function<bool(T)> callback);
 
         Node<T>* last();
@@ -155,7 +157,6 @@ void LinkedList<T>::for_each(std::function<void(Node<T>*, int)> callback) {
     int index = 0;
 
     while (current != nullptr) {
-        std::cout << "index: " << index << std::endl;
         callback(current, index);
         current = current->get_next();
         index++;
@@ -171,7 +172,7 @@ void LinkedList<T>::for_each(std::function<void(Node<T>*)> callback) {
 
 template<typename T>
 void LinkedList<T>::for_each(std::function<void(T)> callback) {
-    for_each([&](Node<T> *node) {
+    for_each([&](Node<T> *node, int index) {
         callback(node->get_data());
     });
 }
@@ -201,11 +202,12 @@ void LinkedList<T>::until(std::function<bool(T)> callback) {
 }
 
 template<typename T>
-Node<T> *LinkedList<T>::find(std::function<bool(Node<T>*)> callback) {
+Node<T> *LinkedList<T>::find(std::function<bool(Node<T> *, int)> callback) {
     Node<T> *current = head;
+    int index = 0;
 
     while (current != nullptr) {
-        if (callback(current)) {
+        if (callback(current, index++)) {
             return current;
         }
 
@@ -216,9 +218,23 @@ Node<T> *LinkedList<T>::find(std::function<bool(Node<T>*)> callback) {
 }
 
 template<typename T>
-Node<T> *LinkedList<T>::find(std::function<bool(T)> callback) {
-    return find([&](Node<T> *node) -> bool {
+Node<T> *LinkedList<T>::find(std::function<bool(Node<T> *)> callback) {
+    return find([&](Node<T> *node, int index) -> bool {
         return callback(node->get_data());
+    });
+}
+
+template<typename T>
+Node<T> *LinkedList<T>::find(std::function<bool(T)> callback) {
+    return find([&](Node<T> *node, int index) -> bool {
+        return callback(node->get_data());
+        });
+}
+
+template<typename T>
+Node<T> *LinkedList<T>::find(std::function<bool(T, int)> callback) {
+    return find([&](Node<T> *node, int index) -> bool {
+        return callback(node->get_data(), index);
     });
 }
 
