@@ -1,19 +1,42 @@
+#define NOMINMAX 1
+
 #include <iostream>
+#include <limits>
 #include "menu.h"
 #include "menu_option.h"
 #include "linked_list.h"
 
-int main(int, char**) {
+int main(int argc, char **argv) {
     Menu menu("Listas - menu");
     LinkedList<int> list;
 
-    list.push_back(5);
-    list.push_back(10);
-    list.push_back(15);
+    menu.add_option(MenuOption("Agregar elemento al final", [&](MenuOptionArguments args) {
+        int value;
+
+        do {
+            std::cout << "ingrese un valor: ";
+            std::cin >> value;
+
+            if (std::cin.fail()) {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                continue;
+            }
+
+            break;
+        } while (true);
+
+        list.push_back(value);
+        std::cout << "[elemento agregado]" << std::endl;
+    }));
+
+    menu.add_option(MenuOption("Agregar elemento al inicio", [](MenuOptionArguments args) {
+        std::cout << "[no implementado aun]" << std::endl;
+    }));
 
     menu.add_option(MenuOption("Eliminar elemento", [&](MenuOptionArguments args) {
         if (list.empty()) {
-            std::cout << "lista vacia" << std::endl << std::endl;
+            std::cout << "[lista vacia]" << std::endl << std::endl;
             system("pause");
             return;
         }
@@ -28,7 +51,7 @@ int main(int, char**) {
                 list.remove_at(args.get<int>("index"));
                 items_menu.stop();
 
-                std::cout << "elemento eliminado" << std::endl;
+                std::cout << "[elemento eliminado]" << std::endl;
             }, arguments);
 
             items_menu.add_option(option);
@@ -40,14 +63,6 @@ int main(int, char**) {
 
         items_menu.display();
     }, false));
-
-    menu.add_option(MenuOption("Agregar elemento", [](MenuOptionArguments args) {
-        std::cout << "[no implementado aun]" << std::endl;
-    }));
-
-    menu.add_option(MenuOption("Agregar elemento por cola", [](MenuOptionArguments args) {
-        std::cout << "[no implementado aun]" << std::endl;
-    }));
 
     menu.add_option(MenuOption("Buscar elemento", [](MenuOptionArguments args) {
         std::cout << "[no implementado aun]" << std::endl;
@@ -64,3 +79,4 @@ int main(int, char**) {
 
     menu.display(); 
 }
+

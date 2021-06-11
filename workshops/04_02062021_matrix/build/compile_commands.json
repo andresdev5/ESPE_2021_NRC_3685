@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/DALTON AREVALO/Desktop/u/Estructura de Datos/Trabajo_Grupal/ESPE_2021_NRC_3685/workshops/04_02062021_matrix/build",
+  "command": "C:\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe  @CMakeFiles/matrix.dir/includes_CXX.rsp -g -std=gnu++14 -o CMakeFiles\\matrix.dir\\src\\main.cpp.obj -c \"C:\\Users\\DALTON AREVALO\\Desktop\\u\\Estructura de Datos\\Trabajo_Grupal\\ESPE_2021_NRC_3685\\workshops\\04_02062021_matrix\\src\\main.cpp\"",
+  "file": "C:/Users/DALTON AREVALO/Desktop/u/Estructura de Datos/Trabajo_Grupal/ESPE_2021_NRC_3685/workshops/04_02062021_matrix/src/main.cpp"
+}
+]

@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\TowersOfHanoi.dir/objects.a
+C:\mingw64\bin\ar.exe cr CMakeFiles\TowersOfHanoi.dir/objects.a @CMakeFiles\TowersOfHanoi.dir\objects1.rsp
+C:\mingw64\bin\x86_64-w64-mingw32-g++.exe -g -Wl,--whole-archive CMakeFiles\TowersOfHanoi.dir/objects.a -Wl,--no-whole-archive -o TowersOfHanoi.exe -Wl,--out-implib,libTowersOfHanoi.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TowersOfHanoi.dir\linklibs.rsp
