@@ -12,11 +12,14 @@ class LinkedList {
         void push_at(const T& value, int index);
         Node<T> *at(int index);
         int size();
+        bool empty();
 
         void remove_at(int index);
 
         void for_each(std::function<void(Node<T>*)> callback);
+        void for_each(std::function<void(Node<T>*, int)> callback);
         void for_each(std::function<void(T)> callback);
+        void for_each(std::function<void(T, int)> callback);
         
         void until(std::function<bool(Node<T>*)> callback);
         void until(std::function<bool(T)> callback);
@@ -66,7 +69,7 @@ void LinkedList<T>::push_front(const T& value) {
 
 template<typename T>
 void LinkedList<T>::push_at(const T& value, int index) {
-    if (index < 0 || index == _size) {
+    if (index < 0 || index >= _size) {
         throw std::invalid_argument("index out of bounds");
     }
 
@@ -85,7 +88,7 @@ void LinkedList<T>::push_at(const T& value, int index) {
 
 template<typename T>
 Node<T> *LinkedList<T>::at(int index) {
-    if (index < 0 || index == _size) {
+    if (index < 0 || index >= _size) {
         throw std::invalid_argument("index out of bounds");
     }
 
@@ -110,13 +113,14 @@ Node<T> *LinkedList<T>::at(int index) {
 
 template <typename T>
 void LinkedList<T>::remove_at(int index) {
-    if (index < 0 || index == _size) {
+    if (index < 0 || index >= _size) {
         throw std::invalid_argument("index out of bounds");
     }
     
     if (index == 0) {
+        Node<T> *tmp = head;
         head = head->get_next();
-        delete head;
+        delete tmp;
     } else if (index == _size - 1) {
         Node<T> *node = last();
         Node<T> *previous = at(index - 1);
@@ -131,6 +135,8 @@ void LinkedList<T>::remove_at(int index) {
         previous->set_next(next);
         delete current;
     }
+
+    _size--;
 }
 
 template<typename T>
@@ -138,14 +144,43 @@ int LinkedList<T>::size() {
     return _size;
 }
 
+template <typename T>
+bool LinkedList<T>::empty() {
+    return _size == 0;
+}
+
 template<typename T>
-void LinkedList<T>::for_each(std::function<void(Node<T>*)> callback) {
+void LinkedList<T>::for_each(std::function<void(Node<T>*, int)> callback) {
     Node<T> *current = head;
+    int index = 0;
 
     while (current != nullptr) {
-        callback(current);
+        std::cout << "index: " << index << std::endl;
+        callback(current, index);
         current = current->get_next();
+        index++;
     }
+}
+
+template<typename T>
+void LinkedList<T>::for_each(std::function<void(Node<T>*)> callback) {
+    for_each([&](Node<T> *node, int index) {
+        callback(node->get_data());
+    });
+}
+
+template<typename T>
+void LinkedList<T>::for_each(std::function<void(T)> callback) {
+    for_each([&](Node<T> *node) {
+        callback(node->get_data());
+    });
+}
+
+template<typename T>
+void LinkedList<T>::for_each(std::function<void(T, int)> callback) {
+    for_each([&](Node<T> *node, int index) {
+        callback(node->get_data(), index);
+    });
 }
 
 template<typename T>
@@ -156,13 +191,6 @@ void LinkedList<T>::until(std::function<bool(Node<T>*)> callback) {
         if (!callback(current)) break;
         current = current->get_next();
     }
-}
-
-template<typename T>
-void LinkedList<T>::for_each(std::function<void(T)> callback) {
-    for_each([&](Node<T> *node) {
-        callback(node->get_data());
-    });
 }
 
 template<typename T>

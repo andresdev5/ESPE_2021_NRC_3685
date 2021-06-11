@@ -16,6 +16,7 @@ public:
     Menu();
     Menu(std::string title);
     void add_option(MenuOption option);
+    void remove_option(int index);
     void display();
     void stop();
     bool is_running();

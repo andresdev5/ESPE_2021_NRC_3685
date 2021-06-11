@@ -14,6 +14,16 @@ void Menu::add_option(MenuOption option) {
     options.push_back(option);
 }
 
+void Menu::remove_option(int index) {
+    if (index < 0 || index > options.size()) {
+        return;
+    }
+
+    std::vector<MenuOption>::iterator it = options.begin();
+    std::advance(it, index);
+    options.erase(it);
+}
+
 void Menu::display() {
     int selected = 1;
 
@@ -37,6 +47,12 @@ void Menu::display() {
         std::cout << title << std::endl << std::endl;
 
         for (MenuOption option : options) {
+            if (option.get_args().has("__index")) {
+                option.get_args().set("__index", position - 1);
+            } else {
+                option.get_args().add("__index", position - 1);
+            }
+
             if (position++ == selected) {
                 SetConsoleTextAttribute (console, BACKGROUND_BLUE);
             }
@@ -48,11 +64,19 @@ void Menu::display() {
         int key;
 
         do {
+#ifdef _MSC_VER
+            key = _getch();
+
+            if (key == 0) {
+                key = _getch();
+            }
+#else
             key = getch();
 
             if (key == 0) {
                 key = getch();
             }
+#endif
         } while (key != KEY_UP && key != KEY_DOWN && key != KEY_ENTER);
         
         switch (key) {
