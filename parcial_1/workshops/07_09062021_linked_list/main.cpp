@@ -1,6 +1,7 @@
 #include <iostream>
 #include "menu.h"
 #include "menu_option.h"
+#include "linked_list.h"
 
 int main(int, char**) {
     Menu menu("Listas - menu");

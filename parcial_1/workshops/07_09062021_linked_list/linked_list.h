@@ -114,7 +114,23 @@ void LinkedList<T>::remove_at(int index) {
         throw std::invalid_argument("index out of bounds");
     }
     
-    
+    if (index == 0) {
+        head = head->get_next();
+        delete head;
+    } else if (index == _size - 1) {
+        Node<T> *node = last();
+        Node<T> *previous = at(index - 1);
+        
+        previous->set_next(nullptr);
+        delete node;
+    } else {
+        Node<T> *current = at(index);
+        Node<T> *previous = at(index - 1);
+        Node<T> *next = at(index + 1);
+        
+        previous->set_next(next);
+        delete current;
+    }
 }
 
 template<typename T>
