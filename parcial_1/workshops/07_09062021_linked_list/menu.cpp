@@ -84,7 +84,7 @@ void Menu::display() {
                 selected--;
 
                 if (selected < 1) {
-                    selected = options.size() - 1;
+                    selected = options.size();
                 }
             }
             break;

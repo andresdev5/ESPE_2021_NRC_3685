@@ -10,11 +10,11 @@ class LinkedList {
         void push_back(const T& value);
         void push_front(const T& value);
         void push_at(const T& value, int index);
+        void remove_at(int index);
         Node<T> *at(int index);
+        void clear();
         int size();
         bool empty();
-
-        void remove_at(int index);
 
         void for_each(std::function<void(Node<T> *, int)> callback);
         void for_each(std::function<void(Node<T>*)> callback);
@@ -139,6 +139,13 @@ void LinkedList<T>::remove_at(int index) {
     }
 
     _size--;
+}
+
+template <typename T>
+void LinkedList<T>::clear() {
+    while (!empty()) {
+        remove_at(0);
+    }
 }
 
 template<typename T>

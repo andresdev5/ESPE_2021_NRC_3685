@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
             MenuOptionArguments arguments;
             arguments.add("index", index);
 
-            MenuOption option(std::to_string(index) + " " + std::to_string(element), [&](MenuOptionArguments args) {
+            MenuOption option(std::to_string(index) + ": " + std::to_string(element), [&](MenuOptionArguments args) {
                 list.remove_at(args.get<int>("index"));
                 items_menu.stop();
 
@@ -82,6 +82,11 @@ int main(int argc, char **argv) {
 
     menu.add_option(MenuOption("Buscar elemento", [&](MenuOptionArguments args) {
         int value;
+
+        if (list.empty()) {
+            std::cout << "[lista vacia]" << std::endl << std::endl;
+            return;
+        }
 
         do {
             std::cout << "ingrese un valor: ";
@@ -110,11 +115,16 @@ int main(int argc, char **argv) {
     }));
 
     menu.add_option(MenuOption("Imprimir lista", [&](MenuOptionArguments args) {
+        if (list.empty()) {
+            std::cout << "[lista vacia]" << std::endl << std::endl;
+            return;
+        }
+
         list.for_each([](int element) {
             std::cout << element << " -> ";
         });
 
-        std::cout << " NULL";
+        std::cout << "NULL";
     }));
 
     menu.add_option(MenuOption("salir", [&](MenuOptionArguments args) {
