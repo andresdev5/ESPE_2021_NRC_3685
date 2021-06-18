@@ -1,5 +1,5 @@
 #pragma once
-#include "linked_list.h"
+#include "doubly_linked_list.h"
 #include "node.h"
 
 template <typename T>
@@ -41,7 +41,7 @@ public:
     int count();
     
 private:
-    LinkedList<T> elements;
+    DoublyLinkedList<T> elements;
     int size = 0;
 };
 
@@ -49,9 +49,7 @@ private:
 
 template <typename T>
 void Stack<T>::push(T value) {
-    Node<T>* aux = new Node<T>(value);
-	aux->set_next(this->elements->last());
-	this->elements->last() = aux;
+    elements.push_front(value);
 }
 
 template <typename T>
