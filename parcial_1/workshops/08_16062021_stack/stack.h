@@ -48,7 +48,11 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 template <typename T>
-void Stack<T>::push(T value) {}
+void Stack<T>::push(T value) {
+    Node<T>* aux = new Node<T>(value);
+	aux->set_next(this->elements->last());
+	this->elements->last() = aux;
+}
 
 template <typename T>
 void Stack<T>::pop() {}
