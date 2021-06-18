@@ -3,6 +3,7 @@
 #include "node.h"
 #include <exception>
 #include <stdexcept>
+#include <functional>
 
 template <typename T>
 class Stack {
@@ -28,6 +29,13 @@ public:
     T peek();
 
     /**
+     * @brief iterate over stack
+     * 
+     * @param callback 
+     */
+    void for_each(std::function<void(T)> callback);
+
+    /**
      * @brief comprueba si la pila esta vacia
      * 
      * @return true en caso de que este vacio
@@ -44,7 +52,6 @@ public:
     
 private:
     DoublyLinkedList<T> elements;
-    int size = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,11 +78,16 @@ T Stack<T>::peek() {
 }
 
 template <typename T>
+void Stack<T>::for_each(std::function<void(T)> callback) {
+    elements.for_each(callback);
+}
+
+template <typename T>
 bool Stack<T>::empty() {
-    return size == 0;
+    return elements.empty();
 }
 
 template <typename T>
 int Stack<T>::count() {
-    return size;
+    return elements.size();
 }

@@ -27,13 +27,15 @@ public:
     Node<T> *find(std::function<bool(T, int)> callback);
     Node<T>* find(std::function<bool(T)> callback);
 
+    T at(int index);
+
     void clear();
     int size();
     bool empty();
 
 private:
+    Node<T> *node_at(int index);
     Node<T> *last();
-    Node<T> *at(int index);
 
     Node<T> *head = nullptr;
     int _size = 0;
@@ -84,7 +86,7 @@ void DoublyLinkedList<T>::push_at(int index, const T &value) {
         return push_back(value);
     }
 
-    Node<T> *target = at(index);
+    Node<T> *target = node_at(index);
     Node<T> *previous = target->get_previous();
     Node<T> *next = target->get_next();
     Node<T> *nodo = new Node<T>(value);
@@ -102,7 +104,10 @@ void DoublyLinkedList<T>::remove_at(int index) {
         throw std::invalid_argument("index out of bounds");
     }
     
-    if (index == 0) {
+    if (_size == 1) {
+        delete head;
+        head = nullptr;
+    } else if (index == 0) {
         Node<T> *temp = head;
         head = head->get_next();
         head->set_previous(nullptr);
@@ -114,7 +119,7 @@ void DoublyLinkedList<T>::remove_at(int index) {
         previous->set_next(nullptr);
         delete node;
     } else {
-        Node<T> *target = at(index);
+        Node<T> *target = node_at(index);
         Node<T> *previous = target->get_previous();
         Node<T> *next = target->get_next();
 
@@ -214,6 +219,11 @@ Node<T> *DoublyLinkedList<T>::find(std::function<bool(T, int)> callback) {
 }
 
 template <typename T>
+T DoublyLinkedList<T>::at(int index) {
+    return node_at(index)->get_data();
+}
+
+template <typename T>
 void DoublyLinkedList<T>::clear() {
     while (!empty()) {
         remove_at(0);
@@ -236,11 +246,11 @@ Node<T> *DoublyLinkedList<T>::last() {
         return nullptr;
     }
     
-    return at(_size - 1);
+    return node_at(_size - 1);
 }
 
 template<typename T>
-Node<T> *DoublyLinkedList<T>::at(int index) {
+Node<T> *DoublyLinkedList<T>::node_at(int index) {
     if (index < 0 || index >= _size) {
         throw std::invalid_argument("index out of bounds");
     }

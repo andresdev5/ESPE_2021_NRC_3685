@@ -1,13 +1,22 @@
 #include <iostream>
 #include "menu.h"
 #include "stack.h"
+#include "utils.h"
 
 int main() {
     Stack<int> stack;
     Menu menu("Pila - Stack");
 
-    menu.add_option(MenuOption("Agregar elemento (push)", [&stack] (MenuOptionArguments args) {
-        
+    menu.add_option(MenuOption("Agregar elementos (push)", [&stack] (MenuOptionArguments args) {
+        do {
+            int number = read_int("ingrese un numero o c para cancelar: ");
+
+            if (number == INT_MAX) {
+                break;
+            }
+
+            stack.push(number);
+        } while (true);
     }));
 
     menu.add_option(MenuOption("Remover elemento (pop)", [&stack] (MenuOptionArguments args) {
@@ -16,8 +25,9 @@ int main() {
             return;
         }
 
+        int top = stack.peek();
         stack.pop();
-        std::cout << "se ha removido un elemento" << std::endl;
+        std::cout << "se ha removido el elemento " << top << std::endl;
     }));
 
     menu.add_option(MenuOption("Obtener elemento (peek/top)", [&stack] (MenuOptionArguments args) {
@@ -30,7 +40,14 @@ int main() {
     }));
 
     menu.add_option(MenuOption("Imprimir pila (print)", [&stack] (MenuOptionArguments args) {
-        
+        if (stack.empty()) {
+            std::cout << "la pila esta vacia" << std::endl;
+            return;
+        }
+
+        stack.for_each([] (int element) {
+            std::cout << element << std::endl;
+        });
     }));
 
     menu.add_option(MenuOption("Salir", [&menu] (MenuOptionArguments args) {
