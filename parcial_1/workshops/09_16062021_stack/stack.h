@@ -1,6 +1,8 @@
 #pragma once
 #include "doubly_linked_list.h"
 #include "node.h"
+#include <exception>
+#include <stdexcept>
 
 template <typename T>
 class Stack {
@@ -60,7 +62,13 @@ void Stack<T>::pop() {
 }
 
 template <typename T>
-T Stack<T>::peek() {}
+T Stack<T>::peek() {
+    if (empty()) {
+        throw std::runtime_error("attempt to get elemento from empty stack");
+    }
+
+    return elements.at(0);
+}
 
 template <typename T>
 bool Stack<T>::empty() {
