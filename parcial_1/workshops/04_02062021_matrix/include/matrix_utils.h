@@ -72,7 +72,7 @@ public:
     template <typename T>
     static void print_matrix(Matrix<T> matrix);
 
-   
+
 };
 
 

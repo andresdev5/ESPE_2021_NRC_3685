@@ -1,7 +1,6 @@
 #pragma once
 #include <cstdlib>
 #include <exception>
-#include "matrix_utils.h"
 
 template <typename T>
 class Matrix {
@@ -65,8 +64,6 @@ private:
      *
      */
     int size;
-
-    MatrixUtils matriz;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

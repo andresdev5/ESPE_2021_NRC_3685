@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     MatrixUtils::fill_random(matrixB, 0, 9);
 
     std::cout << std::endl << "Matriz A:" << std::endl;
-    MatrixUtils::print_matrix(matrixA);
+    MatrixUtils::print_matrix<long long>(matrixA);
 
     std::cout << std::endl << "Matriz B:" << std::endl;
     MatrixUtils::print_matrix(matrixB);
