@@ -61,7 +61,11 @@ template <typename T>
 T Stack<T>::peek() {}
 
 template <typename T>
-bool Stack<T>::empty() {}
+bool Stack<T>::empty() {
+    return size == 0;
+}
 
 template <typename T>
-int Stack<T>::count() {}
+int Stack<T>::count() {
+    return size;
+}

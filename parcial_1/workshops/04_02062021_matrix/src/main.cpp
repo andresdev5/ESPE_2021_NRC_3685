@@ -24,6 +24,8 @@ int main(int argc, char **argv) {
     Matrix<long long> matrixD(size);
 
     MatrixUtils::fill_random(matrixA, 0, 9);
+
+    MatrixUtils::fill_random(matrixA, 0, 9);
     MatrixUtils::fill_random(matrixB, 0, 9);
 
     std::cout << std::endl << "Matriz A:" << std::endl;
