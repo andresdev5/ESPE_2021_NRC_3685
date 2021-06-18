@@ -53,7 +53,11 @@ void Stack<T>::push(T value) {
 }
 
 template <typename T>
-void Stack<T>::pop() {}
+void Stack<T>::pop() {
+    if (!empty()) {
+        elements.remove_at(0);
+    }
+}
 
 template <typename T>
 T Stack<T>::peek() {}
