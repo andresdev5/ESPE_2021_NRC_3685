@@ -1,5 +1,4 @@
-#include "application.h"
-#include "payment.h"
+﻿#include "application.h"
 
 int main(int argc, char **argv) {
     Application app;

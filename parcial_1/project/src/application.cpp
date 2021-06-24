@@ -19,18 +19,13 @@ void Application::run() {
         controller->init();
     }
 
-    menu.add_option(MenuOption("Registrar una persona", [&](MenuOptionArguments args) {
+    // sub menu personas
+    menu.add_option(MenuOption("Personas", [&](MenuOptionArguments args) {
         auto controller = get_controller<PersonsController>("persons");
-        controller->register_person();
-    }));
+        controller->run();
+    }, false));
 
-    menu.add_option(MenuOption("ver personas", [&](MenuOptionArguments args) {
-        auto controller = get_controller<PersonsController>("persons");
-        auto persons = controller->get_persons();
-
-        persons.for_each([](Person person) { cout << person.firstname() << endl; });
-    }));
-
+    // opcion salir
     menu.add_option(MenuOption(
         "Salir", [&menu](MenuOptionArguments args) { menu.stop(); }, false));
 

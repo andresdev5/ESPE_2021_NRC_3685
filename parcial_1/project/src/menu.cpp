@@ -1,5 +1,7 @@
 #include "menu.h"
 #include <conio.h>
+#include <fmt/format.h>
+#include <fmt/color.h>
 
 Menu::Menu() {
     console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -44,8 +46,10 @@ void Menu::display() {
         
         system("cls");
 
-        std::cout << title << std::endl << std::endl;
-
+        std::cout << std::endl << " ";
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::underline, "{}", title);
+        std::cout << std::endl << std::endl;
+        
         for (MenuOption option : options) {
             if (option.get_args().has("__index")) {
                 option.get_args().set("__index", position - 1);
@@ -56,11 +60,14 @@ void Menu::display() {
             std::cout << " ";
 
             if (position++ == selected) {
-                SetConsoleTextAttribute (console, BACKGROUND_BLUE | 0x07);
+                //SetConsoleTextAttribute (console, BACKGROUND_BLUE | 0x07);
+                fmt::print(fg(fmt::color::white) | bg(fmt::color::dark_blue) | fmt::emphasis::bold,
+                    " {} \n", option.get_label());
+            } else {
+                fmt::print(" {} \n", option.get_label());
             }
 
-            std::cout << " " << option.get_label() << " " << std::endl;
-            SetConsoleTextAttribute (console, csbi_defaults);
+            //SetConsoleTextAttribute (console, csbi_defaults);
         }
 
         int key;
