@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fmt/format.h>
+#include <fmt/color.h>
 
 #include "application.h"
 #include "menu.h"
@@ -20,10 +22,23 @@ void Application::run() {
     }
 
     // sub menu personas
-    menu.add_option(MenuOption("Personas", [&](MenuOptionArguments args) {
-        auto controller = get_controller<PersonsController>("persons");
-        controller->run();
-    }, false));
+    menu.add_option(MenuOption(
+        "Personas",
+        [&](MenuOptionArguments args) {
+            auto controller = get_controller<PersonsController>("persons");
+            controller->run();
+        },
+        false));
+
+    // sub menu creditos
+    menu.add_option(MenuOption(
+        "Credito",
+        [&](MenuOptionArguments args) {
+            // ...
+            fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "menu creditos sin implementarse aun...\n\n\n");
+            system("pause");
+        },
+        false));
 
     // opcion salir
     menu.add_option(MenuOption(
