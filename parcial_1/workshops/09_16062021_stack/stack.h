@@ -1,9 +1,9 @@
 #pragma once
 #include "doubly_linked_list.h"
 #include "node.h"
-#include <exception>
-#include <stdexcept>
-#include <functional>
+//#include <exception>
+//#include <stdexcept>
+//#include <functional>
 
 template <typename T>
 class Stack {
@@ -23,7 +23,7 @@ public:
     void pop();
 
     /**
-     * @brief obtiene un elemento de la pila
+     * @brief obtiene el primer elemento de la pila
      * 
      * @return T elemento obtenido
      */

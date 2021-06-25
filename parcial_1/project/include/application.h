@@ -25,4 +25,4 @@ private:
     void register_dependencies();
     std::map<std::string, Controller *> controllers_;
     //std::map<std::string, Service> services_;
-};
+}; 
