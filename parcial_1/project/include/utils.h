@@ -3,6 +3,7 @@
 #include <iostream>
 #include <limits>
 #include <algorithm>
+#include <cfloat>
 
 #include "linked_list.h"
 #include "person.h"
@@ -17,7 +18,7 @@ static inline void str_trim(std::string &s);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static inline int is_numeric(std::string str) {
-    return !str.empty() && std::find_if(str.begin(), 
+    return !str.empty() && std::find_if(str.begin(),
         str.end(), [](unsigned char c) {
             return !std::isdigit(c);
     }) == str.end();
@@ -80,7 +81,30 @@ inline int read_int(std::string label, int min = INT_MIN, int max = INT_MAX) {
     return output;
 }
 
-static inline std::string generateUniqueEmail(LinkedList<Person *> &list, Person person, std::string domain) {
+inline double read_double(std::string label, double min = DBL_MIN, double max = DBL_MAX) {
+    double output;
+
+    do {
+        std::cout << label;
+        std::cin >> output;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (output < min || output > max) {
+            continue;
+        }
+
+        break;
+    } while (true);
+
+    return output;
+}
+
+static inline std::string generateUniqueEmail(LinkedList<Person> &list, Person person, std::string domain) {
     std::string identificador = generateIdEmail(person);
     int repetidos = 0;
     bool repetido = false;
@@ -94,9 +118,9 @@ static inline std::string generateUniqueEmail(LinkedList<Person *> &list, Person
             identificador = generateIdEmail(person) + std::string(sufijo);
         }
 
-        auto found = list.find([&](Person *p) {
+        auto found = list.find([&](Person p) {
             std::string email = identificador + "@" + domain;
-            return (email == p->email());
+            return (email == p.email());
         });
 
         if (found != nullptr) {
