@@ -6,6 +6,7 @@
 #include "date.h"
 #include <regex>
 #include <sstream>
+#include <fstream>
 #include "TextTable.h"
 
 PaymentsController::PaymentsController(Application *app)
@@ -254,6 +255,27 @@ void PaymentsController::view_credits() {
         }
     }
 
+    html << "</tbody></table></body></html>";
+
     t.setAlignment(2, TextTable::Alignment::LEFT);
     std::cout << t << std::endl;
+
+    std::ostringstream plain;
+    std::string html_filename = "data_" + id + ".html";
+    std::string pdf_filename = "data_" + id + ".pdf";
+    std::ofstream out_html(html_filename, std::ios::trunc);
+    std::ofstream out_txt("data_" + id + ".txt", std::ios::trunc);
+
+    plain << t;
+    out_txt << t;
+    out_html << html.str();
+    out_txt.close();
+    out_html.close();
+
+    if (std::ifstream(pdf_filename.c_str()).good()) {
+        std::remove(pdf_filename.c_str());
+    }
+
+    system((std::string("wkhtmltopdf.exe ") + html_filename + " " + pdf_filename).c_str());
+    std::cout << std::endl << "archivo pdf generado!";
 }

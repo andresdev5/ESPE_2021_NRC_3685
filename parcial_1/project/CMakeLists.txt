@@ -35,10 +35,26 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-if(NOT EXISTS "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/database.sqlite")
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/database.sqlite")
     add_custom_command(
         TARGET amortization_app POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
                 "${PROJECT_SOURCE_DIR}/database.sqlite"
                 "${CMAKE_CURRENT_BINARY_DIR}/database.sqlite")
+endif()
+
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
+    add_custom_command(
+        TARGET amortization_app POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                "${PROJECT_SOURCE_DIR}/wkhtmltopdf.exe"
+                "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
+endif()
+
+if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
+    add_custom_command(
+        TARGET amortization_app POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                "${PROJECT_SOURCE_DIR}/wkhtmltox.dll"
+                "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltox.dll")
 endif()
