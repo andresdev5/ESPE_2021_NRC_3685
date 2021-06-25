@@ -1,7 +1,7 @@
 #include "person_credit.h"
 
-PersonCredit::PersonCredit(Person person, Date date, dec::decimal<2> amount, float interest)
-    : person_(person), date_(date), amount_(amount), interest_(interest) {}
+PersonCredit::PersonCredit(Person person, Date date, dec::decimal<2> amount, float interest, int months)
+    : person_(person), date_(date), amount_(amount), interest_(interest), months_(months) {}
 
 Person PersonCredit::get_person() {
     return person_;
@@ -33,4 +33,12 @@ dec::decimal<2> PersonCredit::get_amount() {
 
 void PersonCredit::set_amount(dec::decimal<2> amount) {
     amount_ = amount;
+}
+
+int PersonCredit::get_months() {
+    return months_;
+}
+
+void PersonCredit::set_months(int months) {
+    months_ = months;
 }

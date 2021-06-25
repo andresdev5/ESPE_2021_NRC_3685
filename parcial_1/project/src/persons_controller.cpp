@@ -66,7 +66,7 @@ void PersonsController::register_person() {
     } while (true);
 
     do {
-        firstname = read_line("ingrese los nombres:");
+        firstname = read_line("ingrese el nombre: ");
 
         if (!std::regex_match(firstname, name_pattern)) {
             fmt::print(fg(fmt::color::red), "\n[formato incorrecto]\n");
@@ -77,7 +77,7 @@ void PersonsController::register_person() {
     } while (true);
 
     do {
-        lastname = read_line("ingrese los apellidos:");
+        lastname = read_line("ingrese el apellido: ");
 
         if (!std::regex_match(lastname, name_pattern)) {
             fmt::print(fg(fmt::color::red), "\n[formato incorrecto]\n");
@@ -87,7 +87,7 @@ void PersonsController::register_person() {
         break;
     } while (true);
 
-    address = read_line("ingrese la direccion:");
+    address = read_line("ingrese la direccion: ");
 
     do {
         phone = read_line("ingrese el telefono (+593): ");

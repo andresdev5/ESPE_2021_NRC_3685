@@ -34,7 +34,7 @@ static inline std::string read_line(std::string label) {
     std::string output;
 
     do {
-        std::cout << label << ": ";
+        std::cout << label;
         std::getline(std::cin, output);
 
         str_trim(output);
