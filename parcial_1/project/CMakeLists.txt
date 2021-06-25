@@ -47,7 +47,7 @@ if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
     add_custom_command(
         TARGET amortization_app POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
-                "${PROJECT_SOURCE_DIR}/wkhtmltopdf.exe"
+                "${PROJECT_SOURCE_DIR}/bin/wkhtmltopdf.exe"
                 "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
 endif()
 
@@ -55,6 +55,6 @@ if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
     add_custom_command(
         TARGET amortization_app POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
-                "${PROJECT_SOURCE_DIR}/wkhtmltox.dll"
+                "${PROJECT_SOURCE_DIR}/bin/wkhtmltox.dll"
                 "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltox.dll")
 endif()
