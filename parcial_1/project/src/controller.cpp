@@ -2,6 +2,6 @@
 
 Controller::Controller(Application *app) : app_(app) {}
 
-Application *Controller::get_app() {
+Application *Controller::app() {
     return app_;
 }

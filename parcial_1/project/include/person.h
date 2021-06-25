@@ -1,12 +1,21 @@
 #pragma once
 #include <string>
 
+struct PersonPojo {
+    std::string id;
+    std::string firstname;
+    std::string lastname;
+    std::string address;
+    std::string phone;
+    std::string email;
+};
+
 class Person {
 public:
     Person();
 
     explicit Person(
-    std::string id, std::string firstname, std::string lastname, std::string address, std::string email);
+        std::string id, std::string firstname, std::string lastname, std::string address, std::string phone, std::string email);
 
     void id(std::string const &id);
     std::string const &id() const;

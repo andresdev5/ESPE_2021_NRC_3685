@@ -7,8 +7,8 @@ Person::Person()
       address_("__unknown__"),
       email_("__unknown__") {}
 
-Person::Person(std::string id, std::string firstname, std::string lastname, std::string address, std::string email)
-    : id_(id), firstname_(firstname), lastname_(lastname), address_(address), email_(email) {}
+Person::Person(std::string id, std::string firstname, std::string lastname, std::string address, std::string phone, std::string email)
+    : id_(id), firstname_(firstname), lastname_(lastname), address_(address), phone_(phone), email_(email) {}
 
 void Person::id(std::string const &id) {
     this->id_ = id;

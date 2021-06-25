@@ -24,7 +24,7 @@ include_directories("${PROJECT_SOURCE_DIR}/external/fmt/include")
 
 add_executable(amortization_app main.cpp ${SQLITE3_SOURCES} ${PROJECT_SOURCES})
 
-target_link_libraries(amortization_app fmt::fmt-header-only "${PROJECT_SOURCE_DIR}/external/sqlite3/lib/libsqlite3.a")
+target_link_libraries(amortization_app fmt::fmt-header-only sqlite3)
 
 target_precompile_headers(amortization_app
     PUBLIC
@@ -34,3 +34,11 @@ target_precompile_headers(amortization_app
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
+
+if(NOT EXISTS "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/database.sqlite")
+    add_custom_command(
+        TARGET amortization_app POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+                "${PROJECT_SOURCE_DIR}/database.sqlite"
+                "${CMAKE_CURRENT_BINARY_DIR}/database.sqlite")
+endif()

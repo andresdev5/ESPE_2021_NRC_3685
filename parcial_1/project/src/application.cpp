@@ -7,6 +7,7 @@
 #include "menu_option.h"
 #include "person_builder.h"
 #include "persons_controller.h"
+#include "payments_controller.h"
 
 Application::Application() {
     register_dependencies();
@@ -32,10 +33,9 @@ void Application::run() {
 
     // sub menu creditos
     menu.add_option(MenuOption(
-        "Credito",
-        [&](MenuOptionArguments args) {
-            fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "menu creditos sin implementarse aun...\n\n\n");
-            system("pause");
+        "Credito", [&](MenuOptionArguments args) {
+            auto controller = get_controller<PaymentsController>("payments");
+            controller->run();
         },
         false));
 
@@ -49,4 +49,5 @@ void Application::run() {
 void Application::register_dependencies() {
     // registro de los controladores
     controllers_.insert(std::make_pair("persons", new PersonsController(this)));
+    controllers_.insert(std::make_pair("payments", new PaymentsController(this)));
 }

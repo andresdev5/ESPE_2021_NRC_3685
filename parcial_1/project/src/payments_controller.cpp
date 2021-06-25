@@ -2,8 +2,8 @@
 #include "persons_controller.h"
 #include <decimal/decimal.h>
 #include "utils.h"
-#include "payment.h"
 #include "date.h"
+#include "person_credit.h"
 
 PaymentsController::PaymentsController(Application *app) : Controller(app), menu_(Menu("Amortizacion / credito")) {}
 
@@ -27,7 +27,7 @@ void PaymentsController::run() {
 void PaymentsController::create_credit() {
     std::string id;  // cedula
     double amount; // monto
-    double interest; // interes
+    float interest; // interes
     int months; // plazos
 
     auto persons = app()->get_controller<PersonsController>("persons")->get_persons();
@@ -50,9 +50,9 @@ void PaymentsController::create_credit() {
         break;
     } while (true);
 
-    auto person = persons.find([id](Person person) { return person.id() == id; });
+    auto person_node = persons.find([id](Person person) { return person.id() == id; });
 
-    if (person == nullptr) {
+    if (person_node == nullptr) {
         fmt::print(fg(fmt::color::red), "\n[no se encontro esa persona]\n");
         return;
     }
@@ -78,6 +78,9 @@ void PaymentsController::create_credit() {
     dec::decimal<2> fixed_amount(amount);
 
     Date previous(date);
+    PersonCredit person_credit(person_node->get_data(), date, fixed_amount, interest);
+
+    std::cout << std::endl;
 
     for (int i = 0; i < months; i++) {
         date.add_days(date.last_month_day());
@@ -89,6 +92,6 @@ void PaymentsController::create_credit() {
         }
 
         Date current(last.get_day(), last.get_month(), last.get_year());
-        //std::cout << last.get_day() << "/" << last.get_month() << "/" << last.get_year() << std::endl;
+        std::cout << last.get_day() << "/" << last.get_month() << "/" << last.get_year() << std::endl;
     }
 }
