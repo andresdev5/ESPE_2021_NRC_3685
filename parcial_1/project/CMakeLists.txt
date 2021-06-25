@@ -14,14 +14,22 @@ file(GLOB_RECURSE PROJECT_SOURCES "include/*.h" "src/*.cpp")
 include_directories("${PROJECT_SOURCE_DIR}/include")
 include_directories("${PROJECT_SOURCE_DIR}/external/date/include")
 include_directories("${PROJECT_SOURCE_DIR}/external/decimal/include")
+include_directories("${PROJECT_SOURCE_DIR}/external/sqlite3/include")
+include_directories("${PROJECT_SOURCE_DIR}/external/sqlite_orm/include")
+link_directories("${PROJECT_SOURCE_DIR}/external/sqlite3/lib")
 
 find_package(fmt PATHS "${PROJECT_SOURCE_DIR}/external/fmt/lib/cmake/fmt")
 
 include_directories("${PROJECT_SOURCE_DIR}/external/fmt/include")
 
-add_executable(amortization_app main.cpp ${PROJECT_SOURCES})
+add_executable(amortization_app main.cpp ${SQLITE3_SOURCES} ${PROJECT_SOURCES})
 
-target_link_libraries(amortization_app fmt::fmt-header-only)
+target_link_libraries(amortization_app fmt::fmt-header-only "${PROJECT_SOURCE_DIR}/external/sqlite3/lib/libsqlite3.a")
+
+target_precompile_headers(amortization_app
+    PUBLIC
+        "${PROJECT_SOURCE_DIR}/include/pch.hpp"
+)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

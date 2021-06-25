@@ -11,7 +11,7 @@ class Application {
 public:
     Application();
     void run();
-    
+
     template <typename T, typename std::enable_if<std::is_base_of<Controller, T>::value>::type* = nullptr>
     T *get_controller(std::string key) {
         if (controllers_.find(key) == controllers_.end()) {

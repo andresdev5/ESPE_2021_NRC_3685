@@ -11,6 +11,7 @@ public:
     void view_persons();
     LinkedList<Person> const &get_persons();
 
+
 private:
     LinkedList<Person> persons_;
     Menu menu_;

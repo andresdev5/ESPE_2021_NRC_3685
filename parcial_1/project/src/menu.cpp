@@ -47,7 +47,7 @@ void Menu::display() {
         system("cls");
 
         std::cout << std::endl << " ";
-        fmt::print(fg(fmt::color::white) | fmt::emphasis::underline, "{}", title);
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "{}", title);
         std::cout << std::endl << std::endl;
         
         for (MenuOption option : options) {
@@ -57,14 +57,14 @@ void Menu::display() {
                 option.get_args().add("__index", position - 1);
             }
 
-            std::cout << " ";
 
             if (position++ == selected) {
                 //SetConsoleTextAttribute (console, BACKGROUND_BLUE | 0x07);
-                fmt::print(fg(fmt::color::white) | bg(fmt::color::dark_blue) | fmt::emphasis::bold,
+                fmt::print(bg(fmt::color::slate_gray), " ");
+                fmt::print(fg(fmt::color::white) | bg(fmt::color::blue) | fmt::emphasis::bold,
                     " {} \n", option.get_label());
             } else {
-                fmt::print(" {} \n", option.get_label());
+                fmt::print("  {} \n", option.get_label());
             }
 
             //SetConsoleTextAttribute (console, csbi_defaults);

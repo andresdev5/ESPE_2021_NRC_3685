@@ -1,6 +1,6 @@
 #pragma once
+#include <decimal/decimal.h>
 #include "utils.h"
-#include "decimal.h"
 #include "date.h"
 
 class Payment {

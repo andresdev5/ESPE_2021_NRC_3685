@@ -34,7 +34,6 @@ void Application::run() {
     menu.add_option(MenuOption(
         "Credito",
         [&](MenuOptionArguments args) {
-            // ...
             fmt::print(fg(fmt::color::crimson) | fmt::emphasis::bold, "menu creditos sin implementarse aun...\n\n\n");
             system("pause");
         },

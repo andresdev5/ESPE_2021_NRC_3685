@@ -1,4 +1,5 @@
-﻿#include "application.h"
+﻿#include "pch.hpp"
+#include "application.h"
 
 int main(int argc, char **argv) {
     Application app;
