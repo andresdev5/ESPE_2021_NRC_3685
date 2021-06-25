@@ -9,29 +9,29 @@ class DoublyLinkedList {
 public:
     DoublyLinkedList() = default;
 
-    void push_back(const T &value);
-    void push_front(const T &value);
-    void push_at(int index, const T &value);
-    void remove_at(int index);
+    void push_back(const T &value); //hacer retroceder
+    void push_front(const T &value); //empujar al frente
+    void push_at(int index, const T &value); //empujar en
+    void remove_at(int index); //remover en
 
-    void for_each(std::function<void(Node<T> *, int)> callback);
+    void for_each(std::function<void(Node<T> *, int)> callback); //para cada(funcion llamar de vuelta)
     void for_each(std::function<void(Node<T>*)> callback);
     void for_each(std::function<void(T, int)> callback);
     void for_each(std::function<void(T)> callback);
     
-    void until(std::function<bool(Node<T>*)> callback);
+    void until(std::function<bool(Node<T>*)> callback); // Hasta que
     void until(std::function<bool(T)> callback);
 
-    Node<T> *find(std::function<bool(Node<T> *, int)> callback);
+    Node<T> *find(std::function<bool(Node<T> *, int)> callback); //encontrar
     Node<T>* find(std::function<bool(Node<T>*)> callback);
     Node<T> *find(std::function<bool(T, int)> callback);
     Node<T>* find(std::function<bool(T)> callback);
 
-    T at(int index);
+    T at(int index); //T en (índice int);
 
-    void clear();
-    int size();
-    bool empty();
+    void clear(); //limpiar
+    int size(); //tamaño
+    bool empty(); //vacio
 
 private:
     Node<T> *node_at(int index);
