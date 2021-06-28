@@ -12,6 +12,9 @@ public:
     Application();
     void run();
 
+    /**
+     * obtiene una instancia de un controlador
+     */
     template <typename T, typename std::enable_if<std::is_base_of<Controller, T>::value>::type* = nullptr>
     T *get_controller(std::string key) {
         if (controllers_.find(key) == controllers_.end()) {
@@ -22,6 +25,9 @@ public:
     }
 
 private:
+    /**
+     * Registra los servicios del contenedor
+     */
     void register_dependencies();
     std::map<std::string, Controller *> controllers_;
     //std::map<std::string, Service> services_;
