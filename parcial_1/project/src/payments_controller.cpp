@@ -61,9 +61,9 @@ void PaymentsController::load_data() {
 
 void PaymentsController::create_credit() {
     std::string id;  // cedula
-    double amount; // monto
-    float interest; // interes
-    int months; // plazos
+    double amount;   // monto
+    float interest;  // interes
+    int months;      // plazos
 
     auto persons = app()->get_controller<PersonsController>("persons")->get_persons();
 
@@ -182,77 +182,75 @@ void PaymentsController::view_credits() {
             "<th>Saldo</th>"
             "</tr></thead><tbody>";
 
-    for (auto entry : credits_) {
-        auto credit = entry.second;
-        auto person = credit.get_person();
+    auto entry = credits_.find(id);
+    auto credit = entry->second;
+    auto person = credit.get_person();
 
-        Date date = credit.get_date();
+    Date date = credit.get_date();
 
-        double amount = credit.get_amount().getAsDouble();
-        float interest = credit.get_interest() / 100;
-        int months = credit.get_months();
-        double payment =
-            (amount * ((std::pow((1 + interest), months) * interest) /
-                                                   (std::pow((1 + interest), months) - 1)));
+    double amount = credit.get_amount().getAsDouble();
+    float interest = credit.get_interest() / 100;
+    int months = credit.get_months();
+    double payment =
+        (amount * ((std::pow((1 + interest), months) * interest) / (std::pow((1 + interest), months) - 1)));
 
-        dec::decimal<2> fixed_payment(payment);
+    dec::decimal<2> fixed_payment(payment);
 
-        Date previous(date);
-        std::vector<Date> dates;
+    Date previous(date);
+    std::vector<Date> dates;
 
+    dates.push_back(date);
+
+    for (int i = 0; i < months - 1; i++) {
+        date.add_days(date.last_month_day());
+        Date last(date.get_day(), date.get_month(), date.get_year());
+
+        while (last.get_weekday() == Day::Saturday || last.get_weekday() == Day::Sunday || last.is_holiday()) {
+            last.add_days(1);
+        }
+
+        Date current(last.get_day(), last.get_month(), last.get_year());
         dates.push_back(date);
+        // std::cout << last.get_day() << "/" << last.get_month() << "/" << last.get_year() << std::endl;
+    }
 
-        for (int i = 0; i < months - 1; i++) {
-            date.add_days(date.last_month_day());
-            Date last(date.get_day(), date.get_month(), date.get_year());
+    for (int i = 0; i < months; i++) {
+        std::string date_fmt =
+            fmt::format("{:02d}/{:02d}/{:02d}", dates.at(i).get_day(), dates.at(i).get_month(), dates.at(i).get_year());
 
-            while (last.get_weekday() == Day::Saturday || last.get_weekday() == Day::Sunday || last.is_holiday()) {
-                last.add_days(1);
-            }
+        double interests = amount * interest;
+        double capital = payment - interests;
+        double balance = amount - capital;
+        amount = balance;
 
-            Date current(last.get_day(), last.get_month(), last.get_year());
-            dates.push_back(date);
-            // std::cout << last.get_day() << "/" << last.get_month() << "/" << last.get_year() << std::endl;
-        }
+        t.add(" " + person.id() + " ");
+        t.add(" " + person.firstname() + " ");
+        t.add(" " + person.lastname() + " ");
+        t.add(" " + person.address() + " ");
+        t.add(" " + person.phone() + " ");
+        t.add(" " + person.email() + " ");
+        t.add(" " + std::to_string(i + 1) + " ");
+        t.add(" " + date_fmt + " ");
+        t.add(" " + fmt::format("{0:.2f}", fixed_payment.getAsDouble()) + " ");
+        t.add(" " + fmt::format("{0:.2f}", interests) + " ");
+        t.add(" " + fmt::format("{0:.2f}", capital) + " ");
+        t.add(" " + fmt::format("{0:.2f}", balance) + " ");
+        t.endOfRow();
 
-        for (int i = 0; i < months; i++) {
-            std::string date_fmt = fmt::format(
-                "{:02d}/{:02d}/{:02d}", dates.at(i).get_day(), dates.at(i).get_month(), dates.at(i).get_year());
-
-            double interests = amount * interest;
-            double capital = payment - interests;
-            double balance = amount - capital;
-            amount = balance;
-
-            t.add(" " + person.id() + " ");
-            t.add(" " + person.firstname() + " ");
-            t.add(" " + person.lastname() + " ");
-            t.add(" " + person.address() + " ");
-            t.add(" " + person.phone() + " ");
-            t.add(" " + person.email() + " ");
-            t.add(" " + std::to_string(i + 1) + " ");
-            t.add(" " + date_fmt + " ");
-            t.add(" " + fmt::format("{0:.2f}", fixed_payment.getAsDouble()) + " ");
-            t.add(" " + fmt::format("{0:.2f}", interests) + " ");
-            t.add(" " + fmt::format("{0:.2f}", capital) + " ");
-            t.add(" " + fmt::format("{0:.2f}", balance) + " ");
-            t.endOfRow();
-
-            html << "<tr>"
-                 << "<td>" + person.id() + "</td>"
-                 << "<td>" + person.firstname() + "</td>"
-                 << "<td>" + person.lastname() + "</td>"
-                 << "<td>" + person.address() + "</td>"
-                 << "<td>" + person.phone() + "</td>"
-                 << "<td>" + person.email() + "</td>"
-                 << "<td>" + std::to_string(i + 1) + "</td>"
-                 << "<td>" + date_fmt + "</td>"
-                 << "<td>" + fmt::format("{0:.2f}", fixed_payment.getAsDouble()) + "</td>"
-                 << "<td>" + fmt::format("{0:.2f}", interests) + "</td>"
-                 << "<td>" + fmt::format("{0:.2f}", capital) + "</td>"
-                 << "<td>" + fmt::format("{0:.2f}", balance) + "</td>"
-                 << "</tr>";
-        }
+        html << "<tr>"
+             << "<td>" + person.id() + "</td>"
+             << "<td>" + person.firstname() + "</td>"
+             << "<td>" + person.lastname() + "</td>"
+             << "<td>" + person.address() + "</td>"
+             << "<td>" + person.phone() + "</td>"
+             << "<td>" + person.email() + "</td>"
+             << "<td>" + std::to_string(i + 1) + "</td>"
+             << "<td>" + date_fmt + "</td>"
+             << "<td>" + fmt::format("{0:.2f}", fixed_payment.getAsDouble()) + "</td>"
+             << "<td>" + fmt::format("{0:.2f}", interests) + "</td>"
+             << "<td>" + fmt::format("{0:.2f}", capital) + "</td>"
+             << "<td>" + fmt::format("{0:.2f}", balance) + "</td>"
+             << "</tr>";
     }
 
     html << "</tbody></table></body></html>";
