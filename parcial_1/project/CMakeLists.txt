@@ -97,19 +97,20 @@ find_package(Doxygen)
 
 if (DOXYGEN_FOUND)
     set(DOXYGEN_PROJECT_NAME "Amortization App")
-    set(DOXYGEN_RECURSIVE TRUE)
     set(DOXYGEN_IN ${PROJECT_SOURCE_DIR}/Doxyfile)
-    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile.doxygen)
-    set(DOXYGEN_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/docs/doxygen")
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile.amortization_app)
+    set(DOXYGEN_INPUT "${PROJECT_SOURCE_DIR}/include/application.h")
 
     doxygen_add_docs(doxygen
-        "\"${PROJECT_SOURCE_DIR}/include\" \"${PROJECT_SOURCE_DIR}/src\""
-        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/docs)
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/docs
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
     
     #configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
-    add_custom_target(doc_doxygen ALL
-        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM )
-endif()
+    #add_custom_target(doc_doxygen ALL
+    #    COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_IN}
+    #    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/docs
+    #    COMMENT "Generating API documentation with Doxygen"
+    #    VERBATIM )
+endif(DOXYGEN_FOUND)
