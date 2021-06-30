@@ -48,15 +48,39 @@ class MenuOptionArguments {
 public:
     MenuOptionArguments();
 
+    /**
+     * @brief agrega un argumento con clave
+     * @tparam T tipo del argumento
+     * @param key 
+     * @param argument 
+    */
     template <typename T>
     void add(std::string key, MenuOptionArgument<T> *argument);
 
+    /**
+     * @brief Agrega un argumento con clave y un valor
+     * @tparam T tipo de dato del argumento
+     * @param key clave del argumento
+     * @param value 
+    */
     template <typename T>
     void add(std::string key, T value);
 
+    /**
+     * @brief obtiene un argumento por clave
+     * @tparam T tipo de dato del argumento
+     * @param key clave del argumento a obtener
+     * @return 
+    */
     template <typename T>
     T get(std::string key);
 
+    /**
+     * @brief define un argumento por clave y valor
+     * @tparam T tipo de dato del argumento
+     * @param key clave del argumento
+     * @param value valor del argumento
+    */
     template <typename T>
     void set(std::string key, T value);
 
@@ -107,9 +131,28 @@ public:
     MenuOption(std::string label, MenuOptionCallback callback, bool wait_after_exec);
     MenuOption(std::string label, MenuOptionCallback callback, MenuOptionArguments arguments);
     MenuOption(std::string label, MenuOptionCallback callback, MenuOptionArguments arguments, bool wait_after_exec);
+
+    /**
+     * @brief obtiene la etiqueta de la opcion del menu
+     * @return 
+    */
     std::string get_label();
+
+    /**
+     * @brief ejecuta la accion de esta opcion del menu
+    */
     void execute();
+
+    /**
+     * @brief verifica si esta opcion deberia esperar al usuario
+     * @return true si deberia esperar, caso contrario devuelve false
+    */
     bool should_wait();
+
+    /**
+     * @brief obtiene todos los argumentos de esta opcion
+     * @return 
+    */
     MenuOptionArguments &get_args();
 
 private:

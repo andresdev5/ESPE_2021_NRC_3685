@@ -22,10 +22,21 @@ public:
     PaymentsController(Application *app);
     virtual void init();
     virtual void run();
+
+    /**
+     * @brief vista de los creditos de una persona
+    */
     void view_credits();
 
 private:
+    /**
+     * @brief crea un nuevo credito para una persona
+    */
     void create_credit();
+
+    /**
+     * @brief carga los datos desde la base de datos y los actualiza en el modelo
+    */
     void load_data();
 
     Menu menu_;

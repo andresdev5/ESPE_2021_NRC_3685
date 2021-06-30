@@ -32,10 +32,32 @@ public:
     PersonsController(Application *app);
     virtual void init();
     virtual void run();
+
+    /**
+     * @brief registra una nueva persona
+    */
     void register_person();
+
+    /**
+     * @brief guarda una persona en la base de datos
+     * @param person 
+    */
     void save_person(Person person);
+
+    /**
+     * @brief vista de las personas registradas
+    */
     void view_persons();
+
+    /**
+     * @brief realiza un backup de las personas
+    */
     void backup_data();
+
+    /**
+     * @brief obtiene la lista de todas las personas
+     * @return 
+    */
     LinkedList<Person> const &get_persons();
 
 private:
