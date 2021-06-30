@@ -10,6 +10,10 @@ class Controller;
 class Application {
 public:
     Application();
+
+    /**
+     * Inicializa la aplicacion
+     */
     void run();
 
     /**
@@ -29,6 +33,10 @@ private:
      * Registra los servicios del contenedor
      */
     void register_dependencies();
+
+    /**
+     * coleccion para los controladores, la clave es un alias y el valor una instancia
+     */
     std::map<std::string, Controller *> controllers_;
     //std::map<std::string, Service> services_;
 };

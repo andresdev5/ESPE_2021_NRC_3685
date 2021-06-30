@@ -14,7 +14,7 @@ class Person {
 public:
     Person();
 
-    explicit Person(
+    Person(
         std::string id, std::string firstname, std::string lastname, std::string address, std::string phone, std::string email);
 
     void id(std::string const &id);

@@ -3,11 +3,20 @@ project(amortization_app VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
+# agregamos la librería GoogleTest C++
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+#include(CTest)
+#enable_testing()
+
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-
-include(CTest)
-enable_testing()
 
 file(GLOB_RECURSE PROJECT_SOURCES "include/*.h" "src/*.cpp")
 
@@ -19,7 +28,6 @@ include_directories("${PROJECT_SOURCE_DIR}/external/sqlite_orm/include")
 link_directories("${PROJECT_SOURCE_DIR}/external/sqlite3/lib")
 
 find_package(fmt PATHS "${PROJECT_SOURCE_DIR}/external/fmt/lib/cmake/fmt")
-
 include_directories("${PROJECT_SOURCE_DIR}/external/fmt/include")
 
 add_executable(amortization_app main.cpp ${SQLITE3_SOURCES} ${PROJECT_SOURCES})
@@ -58,3 +66,5 @@ if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
                 "${PROJECT_SOURCE_DIR}/bin/wkhtmltox.dll"
                 "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltox.dll")
 endif()
+
+add_subdirectory("${PROJECT_SOURCE_DIR}/tests")
