@@ -12,12 +12,15 @@ public:
     Application();
 
     /**
-     * Inicializa la aplicacion
+     * @brief inicializa la aplicacion
      */
     void run();
 
     /**
-     * obtiene una instancia de un controlador
+     * @brief obtiene una instancia de un controlador
+     * @tparam T la clase del controlador a obtener
+     * @param key el nombre con el que se registro el controlador
+     * @return instancia del controlador registrado
      */
     template <typename T, typename std::enable_if<std::is_base_of<Controller, T>::value>::type* = nullptr>
     T *get_controller(std::string key) {
@@ -30,12 +33,12 @@ public:
 
 private:
     /**
-     * Registra los servicios del contenedor
+     * @brief Registra los servicios del contenedor
      */
     void register_dependencies();
 
     /**
-     * coleccion para los controladores, la clave es un alias y el valor una instancia
+     * @brief coleccion para los controladores, la clave es un alias y el valor una instancia
      */
     std::map<std::string, Controller *> controllers_;
     //std::map<std::string, Service> services_;

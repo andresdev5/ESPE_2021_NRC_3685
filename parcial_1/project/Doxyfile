@@ -1,0 +1,5 @@
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Amortization App"
+INPUT                  = "./include" "./src"
+RECURSIVE              = YES
+DOXYGEN_OUTPUT_DIRECTORY = "./docs"

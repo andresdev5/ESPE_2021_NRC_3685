@@ -7,28 +7,87 @@ template<typename T>
 class LinkedList {
     public:
         LinkedList() = default;
+
+        /**
+         * @brief inserta un elemento al final de la lista
+         * @param value valor del elemento
+         */
         void push_back(const T& value);
+
+        /**
+         * @brief inserta un elemento al inicio de la lista
+         * @param value valor del elemento
+         */
         void push_front(const T& value);
+
+        /**
+         * @brief inserta un elemento en una posicion especifica
+         * @param value valor del elemento
+         * @param index indice en donde se insertara el elemento
+         */
         void push_at(const T& value, int index);
+
+        /**
+         * @brief elimina un elemento en una posicion especifica
+         * @param index indice del elemento a eliminar
+         */
         void remove_at(int index);
+
+        /**
+         * @brief obtiene el puntero del nodo dado un indice
+         * @param index indice del nodo a obtener
+         * @return 
+         */
         Node<T> *at(int index);
+
+        /**
+         * @brief elimina todos los elementos de la lista
+         */
         void clear();
+
+        /**
+         * @brief obtiene el tamaño de la lista
+         */
         int size();
+
+        /**
+         * @brief verifica si la lista esta vacia
+         * @return true si esta vacia, false si no esta vacia
+         */
         bool empty();
 
+        /**
+         * @brief recorre la lista y ejecuta una expresion lambda en cada iteracion
+         * @param callback
+        */
         void for_each(std::function<void(Node<T> *, int)> callback);
         void for_each(std::function<void(Node<T>*)> callback);
         void for_each(std::function<void(T, int)> callback);
         void for_each(std::function<void(T)> callback);
-        
+
+        /**
+         * @brief recorre la lista y ejecuta una expresion lambda en cada iteracion hasta que la
+         * expresion lambda regrese falso, si regresa falso, el recorrido se detiene.
+         * @param callback
+         */
         void until(std::function<bool(Node<T>*)> callback);
         void until(std::function<bool(T)> callback);
 
+        /**
+         * @brief busca un elemento en la lista dado una expresion lambda
+         * @param callback expresion lambda que regresara true o false, si es true se indica que
+         * el elemento fue encontrado, caso contrario devuelve false
+         * @return un puntero al nodo encontrado o nullptr si no se encontró
+         */
         Node<T> *find(std::function<bool(Node<T> *, int)> callback);
         Node<T>* find(std::function<bool(Node<T>*)> callback);
         Node<T> *find(std::function<bool(T, int)> callback);
         Node<T>* find(std::function<bool(T)> callback);
 
+        /**
+         * @brief obtiene el puntero del ultimo nodo de la lista
+         * @return 
+         */
         Node<T>* last();
 
     private:

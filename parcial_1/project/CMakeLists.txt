@@ -3,7 +3,7 @@ project(amortization_app VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# agregamos la librería GoogleTest C++
+# agregamos la librerï¿½a GoogleTest C++
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -13,7 +13,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 #include(CTest)
-#enable_testing()
+enable_testing()
 
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
@@ -67,4 +67,49 @@ if(NOT EXISTS "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltopdf.exe")
                 "${CMAKE_CURRENT_BINARY_DIR}/wkhtmltox.dll")
 endif()
 
-add_subdirectory("${PROJECT_SOURCE_DIR}/tests")
+#add_subdirectory("${PROJECT_SOURCE_DIR}/tests")
+set(APP_TEST_NAME ${CMAKE_PROJECT_NAME}_test)
+
+#file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
+set(TEST_SOURCES
+    tests/person_test.cpp
+    tests/date_test.cpp
+    tests/input_test.cpp
+)
+
+set(SOURCES ${TEST_SOURCES})
+
+enable_testing()
+
+add_executable(
+  ${APP_TEST_NAME} 
+  ${TEST_SOURCES}
+)
+target_link_libraries(
+  ${APP_TEST_NAME} 
+  gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(${APP_TEST_NAME})
+
+find_package(Doxygen)
+
+if (DOXYGEN_FOUND)
+    set(DOXYGEN_PROJECT_NAME "Amortization App")
+    set(DOXYGEN_RECURSIVE TRUE)
+    set(DOXYGEN_IN ${PROJECT_SOURCE_DIR}/Doxyfile)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile.doxygen)
+    set(DOXYGEN_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/docs/doxygen")
+
+    doxygen_add_docs(doxygen
+        "\"${PROJECT_SOURCE_DIR}/include\" \"${PROJECT_SOURCE_DIR}/src\""
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/docs)
+    
+    #configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+
+    add_custom_target(doc_doxygen ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM )
+endif()

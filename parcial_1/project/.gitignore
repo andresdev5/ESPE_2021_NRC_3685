@@ -1,5 +1,6 @@
 out/
 build/
 docs/*.vpp.*
+docs/doxygen/**/*
 !bin/wkhtmltopdf.exe
 !bin/wkhtmltox.dll

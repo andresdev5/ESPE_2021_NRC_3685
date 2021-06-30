@@ -17,6 +17,11 @@ static inline void str_trim(std::string &s);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @brief verifica si una cadena es numerica
+ * @param str cadena a ser evaluada
+ * @return true si es numerica, caso contrario devuelve false
+*/
 static inline int is_numeric(std::string str) {
     return !str.empty() && std::find_if(str.begin(),
         str.end(), [](unsigned char c) {
@@ -24,12 +29,21 @@ static inline int is_numeric(std::string str) {
     }) == str.end();
 }
 
+/**
+ * @brief transforma una cadena a minusculas
+ * @param str la cadena por rerefencia a ser transformada
+*/
 static inline void tolowercase(std::string &str) {
     std::transform(str.begin(), str.end(), str.begin(), [] (unsigned char c) {
         return std::tolower(c);
     });
 }
 
+/**
+ * @brief lee una linea de texto por consola
+ * @param label prompt mostrado al usuario
+ * @return la cadena leida
+*/
 static inline std::string read_line(std::string label) {
     std::string output;
 
@@ -49,6 +63,13 @@ static inline std::string read_line(std::string label) {
     return output;
 }
 
+/**
+ * @brief lee un entero de la consola
+ * @param label prompt mostrado al usuario
+ * @param min valor minimo a leer
+ * @param max valor maximo a leer
+ * @return valor leido
+*/
 inline int read_int(std::string label, int min = INT_MIN, int max = INT_MAX) {
     std::string input;
     int output;
@@ -81,6 +102,13 @@ inline int read_int(std::string label, int min = INT_MIN, int max = INT_MAX) {
     return output;
 }
 
+/**
+ * @brief lee un valor de tipo double de la consola
+ * @param label prompt mostrado al usuario
+ * @param min valor minimo a leer
+ * @param max valor maximo a leer
+ * @return valor leido
+*/
 inline double read_double(std::string label, double min = DBL_MIN, double max = DBL_MAX) {
     double output;
 
@@ -104,6 +132,13 @@ inline double read_double(std::string label, double min = DBL_MIN, double max = 
     return output;
 }
 
+/**
+ * @brief genera un email unico dado una lista y una persona
+ * @param list la lista de personas a evaluar
+ * @param person la persona a la que se genera el email
+ * @param domain el dominio del email
+ * @return email unico generado
+*/
 static inline std::string generateUniqueEmail(LinkedList<Person> &list, Person person, std::string domain) {
     std::string identificador = generateIdEmail(person);
     int repetidos = 0;
@@ -138,6 +173,11 @@ static inline std::string generateUniqueEmail(LinkedList<Person> &list, Person p
     return email;
 }
 
+/**
+ * @brief verifica si una cedula es valida o no
+ * @param ci cedula a evaluarse
+ * @return true si es valida, caso contrario devuelve false
+*/
 static inline bool is_person_id_valid(std::string ci) {
     str_trim(ci);
     std::string cedula = ci;
